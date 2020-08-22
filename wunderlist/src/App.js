@@ -1,6 +1,6 @@
 // LIBRARIES, UTILITIES, CSS
 import React from 'react';
-import './App.css';
+import './App.css'; //Most likely unneccessary as <App /> won't be rendering any JSX and components have their own CSS files
 import { Route, Switch } from 'react-router-dom';
 
 // COMPONENTS
