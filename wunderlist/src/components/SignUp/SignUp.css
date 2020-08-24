@@ -1,0 +1,12 @@
+* {
+    text-align: center;
+}
+#container{
+    padding: 3%;
+}
+form{
+    display: flex;
+    padding: 2%;
+    flex-direction: column;
+    
+}
