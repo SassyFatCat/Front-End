@@ -4,6 +4,7 @@ import {TodosContext} from '../../context/TodosContext';
 
 //DUMMY DATA
 import {dummyData} from './dummyData';
+import TodoList from '../TodoList/TodoList'; 
 
 const Dashboard = () => {
 const [todos, setTodos] = useState(dummyData);
@@ -32,7 +33,7 @@ useEffect(() => {
             </div>
 
             <TodosContext.Provider value={{todos, setUpdate}}>
-                {/*whatever components go here will have access to value*/}
+                <TodoList /> 
             </TodosContext.Provider>
             
         </div>
