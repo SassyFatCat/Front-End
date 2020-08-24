@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import './Home.css'; 
 import axios from 'axios';
 
 const initialValues={
