@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Link } from 'react-router-dom';
 import axios from 'axios';
 import './Login.css'
 
@@ -47,6 +48,8 @@ const onSubmit = event => {
     submit()
 }
 
+
+
     return(
         <>
         <div className = 'login'></div>
@@ -73,6 +76,7 @@ const onSubmit = event => {
             </label>
             <button type='submit'>submit</button>
         </div>
+        <Link to='/' className='homeLink'>Home</Link>
         </form>
         
         </>
