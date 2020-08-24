@@ -1,27 +1,27 @@
 const dummyData = [
     {
-        task: 'Shopping',
+        name: 'Shopping',
         completed: false,
         id: 0,
-        tags: ['work', 'play']
+        tags: ['work', 'school']
     },
     {
-        task: 'Dishes',
+        name: 'Dishes',
         completed: false,
-        id: 0,
-        tags: ['work', 'chores']
+        id: 1,
+        tags: ['work', 'exercise']
     },
     {
-        task: 'Swimming',
+        name: 'Swimming',
         completed: false,
-        id: 0,
-        tags: ['play']
+        id: 2,
+        tags: ['school']
     },
     {
-        task: 'Watching TV',
+        name: 'Watching TV',
         completed: false,
-        id: 0,
-        tags: ['play']
+        id: 3,
+        tags: ['exercise']
     },
 ];
 
