@@ -12,7 +12,7 @@ import Login from './components/Login/Login'
 import signUp from "./components/SignUp/SignUp";
 
 
-function App() {
+function App(){ 
   return (
     <div>
 
@@ -21,9 +21,7 @@ function App() {
 
       <Route exact path='/' component={Home} />
       <Route path='/login' component={Login}/>
-       <Route path="/signup" component={signUp} />
-
-
+      <Route path="/signup" component={signUp} />
       <Route path='/dashboard' component={Dashboard} /> {/*Eventually will be PrivateRoute*/}
 
     </Switch>
