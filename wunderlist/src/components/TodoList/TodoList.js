@@ -1,6 +1,8 @@
 import React, { useContext } from 'react'
 import { TodosContext } from '../../context/TodosContext';
 
+import './Todolist.css'; 
+
 const TodoList = () => {
 const todosContext = useContext(TodosContext); 
     
@@ -15,8 +17,8 @@ const editTodo = id => {
         <div>
             {todosContext.todos.map(item => {
                 return (
-                    <div>
-                        <h3>{item.name}</h3>
+                    <div className="tasks">
+                        <h2>{item.name}</h2>
                         <button>Delete</button>
                         <button onClick={event => {
                             event.preventDefault();

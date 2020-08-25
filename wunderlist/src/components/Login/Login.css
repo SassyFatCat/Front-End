@@ -1,0 +1,59 @@
+
+
+.login {
+    height: 100vh;
+    width: 100vw;
+    background-image: url('alberta-2297204_1920.jpg');
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.loginContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba(0,0,0, .4);
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 40%;
+    height: 40%;
+    text-align: center;
+    border: 2px solid white;
+
+}
+h2{
+    font-size: 3rem;
+    padding-bottom: 5%;
+}
+
+.loginInfo{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+font-size: 1.2rem;
+
+}
+
+input{
+    margin-bottom: 5%;
+}
+
+button{
+    width: 50%;
+    margin-left: 30%;
+    font-size: 1rem;
+    margin-bottom: 5%;
+}
+
+.homeLink{
+    color: white;
+    font-size: 1rem;
+}
