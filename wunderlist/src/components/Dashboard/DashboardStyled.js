@@ -30,8 +30,34 @@ justify-content: center;
 
 const TodoHeader = styled.h1`
 text-align: left;
-text-decoration: underline;
+font-family: 'Lato', sans-serif; 
+font-size: 2.5rem;
 margin-bottom: 1.5%;
+padding: 0; 
 `;
 
-export {Header, LogoutButton, DashBar, TodoListContainer, TodoHeader}
+const FormDiv = styled.div`
+  display: flex;
+  flex-direction: column; 
+`
+
+const ListHeader = styled.div`
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    width: 70%;
+`
+
+const SearchForm = styled.form`
+    width: 30%;
+    margin: auto; 
+    display: flex;
+    border: 1px solid red;
+    padding: 2% 2% 1% 2%;
+    &:first-child{
+        font-size: 1.2rem;
+        font-family: 'Lato', sans-serif;
+    }
+`
+
+export {Header, LogoutButton, DashBar, TodoListContainer, TodoHeader, FormDiv, ListHeader, SearchForm}

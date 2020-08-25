@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { TodosContext } from "../../context/TodosContext";
 import { dummyData } from "../Dashboard/dummyData";
+import {StyledHeader} from "./FormStyles"; 
 
 const initialForm = {
   name: "",
@@ -75,7 +76,7 @@ if (todosContext.addEdit.is === 'edit') {
 }, [todosContext.addEdit.id])
     return (
         <div>
-            <h1>{todosContext.addEdit.is === 'add' ? ('Add a new todo') : ('Edit your todo')}</h1>
+            <StyledHeader>{todosContext.addEdit.is === 'add' ? ('Add a new todo') : ('Edit your todo')}</StyledHeader>
 
 
       <form>
