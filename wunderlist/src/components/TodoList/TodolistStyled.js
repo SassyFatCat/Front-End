@@ -1,10 +1,7 @@
 import styled from 'styled-components'
 const TodoDiv = styled.div`
     background: whitesmoke;
-    /* height: 69px; */
     width: 100%;
-    /* margin-left: 10%; */
-    /* display: block; */
     border-bottom: 1px solid #2C3E50;
     color: black;
     text-transform: capitalize;
@@ -20,6 +17,7 @@ const TodoDiv = styled.div`
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     transition: 0.5s background-color; 
+  
     &:hover {
       background-color: white; 
     }
@@ -64,6 +62,11 @@ display: flex;
 flex-direction: column;
 align-items: left;
 `;
+
+const FormDiv = styled.div`
+  display: flex;
+  flex-direction: column; 
+`
 
 
 export {Button, Tags, TodoTitle, TodoDiv, CompletedTodoTitle, Container}

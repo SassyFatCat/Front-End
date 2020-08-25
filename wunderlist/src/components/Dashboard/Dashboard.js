@@ -1,7 +1,7 @@
 // LIBRARIES, UTILITIES, CSS
 import React, {useState, useEffect} from 'react';
 import {TodosContext} from '../../context/TodosContext';
-import {Header, LogoutButton, DashBar, TodoListContainer, TodoHeader} from './DashboardStyled';
+import {Header, LogoutButton, DashBar, TodoListContainer, TodoHeader, FormDiv, ListHeader, SearchForm} from './DashboardStyled';
 
 //DUMMY DATA
 import {dummyData} from './dummyData';
@@ -55,7 +55,7 @@ useEffect(() => {
             </DashBar>
 
             <div>
-                <form style={{width: '20%', margin: 'auto'}}>
+                <SearchForm>
                     <label htmlFor="search">Search</label>
                     <input
                     type="text"
@@ -68,22 +68,21 @@ useEffect(() => {
                     }}
                     value={searchTerm}
                     />
-                </form>
+                </SearchForm>
             </div>
 
-            <TodosContext.Provider value={{todos, update, setUpdate, addEdit, setAddEdit, searchResults}}> {/* comment */}
+            <TodosContext.Provider value={{todos, update, setUpdate, addEdit, setAddEdit, searchResults}}>
             <TodoListContainer>
-                <div style={{display: 'flex', flexDirection: 'column', width: '50%'}}>
-                    <div style={{display: 'flex', alignItems: 'center'}}>
+                <div style={{display: 'flex', flexDirection: 'column', width: '50%', alignItems: 'center'}}>
+                    <ListHeader>
                         <TodoHeader>My To-do List</TodoHeader>
                         {!addEdit.is && <LogoutButton onClick={addTodo}>Add Todo</LogoutButton>}
-                    </div>
+                    </ListHeader>
                     <TodoList />
                 </div>
-                <div style={{display: 'flex', flexDirection: 'column'}}>
-                
-                {addEdit.is ? <AddEditForm /> : null}{/* comment */}
-                </div>
+                <FormDiv>
+                {addEdit.is ? <AddEditForm /> : null}
+                </FormDiv>
             </TodoListContainer>
             </TodosContext.Provider>
             
