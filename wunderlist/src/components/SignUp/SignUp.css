@@ -12,19 +12,47 @@
 input{
     width: 100%;
 }
+label{
+  font-size: 1.2rem;
+}
+.insideFormContainer{
+  display: flex;
+  flex-direction: column;
+}
+
 .submitButton {
-  width: 100%;
+  width: 50%;
   padding: 1%;
+  background-color: #24F569;
+  font-weight: bolder;
+  border: 0.1px black;
+  border-radius: 5px;
+}
+.submitButton:hover{
+  transition: 0.3s;
+  transform: scale(1.02);
+}
+.submitButton:disabled{
+  background-color: #24f56a4d;
+  transition: none;
+  transform: none;
 }
 .homeLink{
+  width: 50%;
     text-decoration: none;
-    color: white;
+    color: #24FF99;
+    padding: 3%;
+    font-size: 1.1rem;
+    margin: 0 auto;
+}
+.homeLink:hover{
+  transition: 0.3s;
+  transform: scale(1.2);
 }
 
 /* ERRORS CSS  */
 .error {
   color: rgb(190, 42, 42);
-  padding: 2%;
 }
 .title{
     padding: 0;
