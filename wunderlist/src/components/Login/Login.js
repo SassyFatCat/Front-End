@@ -4,9 +4,14 @@ import {Link } from 'react-router-dom';
 import axios from 'axios';
 import * as yup from 'yup';
 import './Login.css'
-
+import LoginformSchema from './LoginformSchema'
 
 const initialValues = {
+  username: "",
+  password: "",
+};
+
+const initialErrors = {
   username: "",
   password: "",
 };
@@ -14,7 +19,7 @@ const initialValues = {
 const Login = () => {
   const [userInfo, setUserInfo] = useState([]);
   const [values, setValues] = useState(initialValues);
-
+const [errors, setErrors ] = useState(initialErrors)
 
 const thisUrl = 'https://reqres.in/api/users'
 
@@ -70,11 +75,30 @@ postUser(thisUser)
 }
 
 const inputValueChange = (event) => {
+
   const {name,value} = event.target
   setValues({
     ...values,
     [name]: value,
   });
+
+  yup
+  .reach(LoginformSchema, name)
+  .validate(value)
+  .then(valid => {
+      setErrors({
+        ...errors,
+        [name]: ""
+      });
+  })
+    .catch(error => {
+      setErrors({
+        ...errors,
+        [name]: error.errors[0]
+      });
+    });
+
+  
 };
 
 
@@ -110,6 +134,12 @@ useEffect(() => {
             </label>
             <button className='loginButton'>submit</button>
         </div>
+
+        <div className='myErrors'>
+        <div>{errors.username}</div>
+        <div>{errors.password}</div>
+        </div>
+
         <Link to='/' className='homeLink'>Home</Link>
         </form>
         
