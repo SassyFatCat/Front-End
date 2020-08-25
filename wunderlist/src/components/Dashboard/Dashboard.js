@@ -7,6 +7,9 @@ import {dummyData} from './dummyData';
 import TodoList from '../TodoList/TodoList'; 
 import './Dashboard.css'; 
 
+// COMPONENTS
+import AddEditForm from '../AddEditForm/AddEditForm'
+
 const Dashboard = () => {
 const [todos, setTodos] = useState(dummyData);
 const [update, setUpdate] = useState(true);

@@ -75,10 +75,6 @@ postUser(thisUser)
   };
 
 
-const onSubmit = event => {
-    event.preventDefault()
-    submit()
-}
 
 useEffect(() => {
     getUser()
