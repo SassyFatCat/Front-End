@@ -17,7 +17,7 @@ const thisUrl = 'https://reqres.in/api/users'
 
 const update = (name, value) => {
     const updateUser = {[name]: value, ...values}
-    setUserInfo(updateUser)
+    setValues(updateUser)
   
 }
 
@@ -27,25 +27,25 @@ const onChange = event => {
 }
 
 const getUser = () => {
-axios.get(thisUrl)
-.then(res => {
-    setUserInfo(res.data)
-})
-.catch(error => {
-    console.log('check axios get')
-})
+    axios.get(thisUrl)
+    .then(res => {
+        setUserInfo(res.data)
+    })
+    .catch(error => {
+        console.log('check axios get')
+    })
 
-.finally(() => {
-    setValues(initialValues)
-})
+    .finally(() => {
+        setValues(initialValues)
+    })
 }
 
 const postUser = thisUser => {
-    console.log(thisUser)
-    axios.post(thisUrl, thisUser)
-    .then( res => {
+   
+    axios.post('https://reqres.in/api/users', thisUser)
+    .then(res => {
         setUserInfo([...userInfo, res.data])
-     
+    
     })
     .catch(error => {
       console.log('check axios post')
@@ -81,7 +81,7 @@ useEffect(() => {
         <div className='loginInfo'>
             <label>Username: 
                 <input
-                // value=
+                //  value={values.username}
                  onChange={onChange}
                 name='username'
                 type='text'
@@ -90,7 +90,7 @@ useEffect(() => {
             </label>
             <label>Password: 
                 <input
-                // value=
+                //  value={values.password}
                  onChange={onChange}
                 name='password'
                 type='text'
