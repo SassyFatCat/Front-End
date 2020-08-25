@@ -1,11 +1,12 @@
 // LIBRARIES, UTILITIES, CSS
 import React, {useState, useEffect} from 'react';
 import {TodosContext} from '../../context/TodosContext';
+import {Header, LogoutButton, DashBar} from './DashboardStyled';
 
 //DUMMY DATA
 import {dummyData} from './dummyData';
 import TodoList from '../TodoList/TodoList'; 
-import './Dashboard.css'; 
+
 
 // COMPONENTS
 import AddEditForm from '../AddEditForm/AddEditForm'
@@ -29,20 +30,28 @@ const logOut = event => {
     // route the user to /Login
 }
 
+const addTodo = event => {
+event.preventDefault();
+setAddEdit({
+    is: 'add'
+})
+}
+
 useEffect(() => {
     getTodos()
 }, [update]) //Dependency array will watch for changes in slice of state that changes when .put() or .delete() or adding new task
 
     return (
         <div>
-            <div className="dash-bar">
-                <h1>Wunderlist</h1>
-                <button className="logout-button" onClick={logOut}>Log Out</button>
-            </div>
+            <DashBar>
+                <Header>Wunderlist</Header>
+                <LogoutButton onClick={logOut}>Log Out</LogoutButton>
+            </DashBar>
 
 
-            <TodosContext.Provider value={{todos, setUpdate, addEdit, setAddEdit}}> {/* comment */}
+            <TodosContext.Provider value={{todos, update, setUpdate, addEdit, setAddEdit}}> {/* comment */}
                 <TodoList />
+                <LogoutButton onClick={addTodo}>Add Todo</LogoutButton>
                 {addEdit.is ? <AddEditForm /> : null}{/* comment */}
 
             </TodosContext.Provider>

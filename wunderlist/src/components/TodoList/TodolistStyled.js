@@ -1,4 +1,5 @@
-.tasks {
+import styled from 'styled-components'
+const TodoDiv = styled.div`
     background: whitesmoke;
     height: 69px;
     width: 30%;
@@ -19,17 +20,18 @@
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     transition: 0.5s background-color; 
-  }
-
-  .tasks:hover {
+    &:hover {
       background-color: white; 
-  }
+    }
+  `
 
-  h2 {
+
+
+const TodoTitle = styled.h2`
       font-size: 1.2rem;
-  }
+  `
 
-  span {
+const Tags = styled.span`
     display: flex;
     float: right;
     font-size: 12px;
@@ -38,9 +40,9 @@
     text-transform: capitalize;
     font-weight: normal;
     color: black;
-  }
+  `
 
-button {
+const Button = styled.button`
     float: left;
     color: white;
     background-color: #88B04B;
@@ -48,9 +50,11 @@ button {
     border:0.1em solid #000000;
     margin:0 0.2em 0.2em 0;
     border-radius:0.12em;
-}
-
-  button:hover {
+    &:hover {
       color: black;
       border-color:#FFFFFF;
   }
+`
+
+export {Button, Tags, TodoTitle, TodoDiv}
+
