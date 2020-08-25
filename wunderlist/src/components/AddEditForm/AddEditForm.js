@@ -47,7 +47,7 @@ if (todosContext.addEdit.is === 'edit') {
 
 }
 
-}, )
+}, [todosContext.addEdit.id])
     return (
         <div>
             <h1>AddEditForm</h1>
