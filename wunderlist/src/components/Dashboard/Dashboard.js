@@ -48,6 +48,15 @@ useEffect(() => {
                 <LogoutButton onClick={logOut}>Log Out</LogoutButton>
             </DashBar>
 
+            <div>
+                <form>
+                    <label htmlFor="search">Search</label>
+                    <input
+                    type="text"
+                    name="search"
+                    />
+                </form>
+            </div>
 
             <TodosContext.Provider value={{todos, update, setUpdate, addEdit, setAddEdit}}> {/* comment */}
                 <TodoList />
