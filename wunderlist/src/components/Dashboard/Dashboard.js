@@ -39,9 +39,9 @@ useEffect(() => {
                 <button onClick={logOut}>Log Out</button>
             </div>
 
-            <TodosContext.Provider value={{todos, setUpdate, addEdit, setAddEdit}}>
+            <TodosContext.Provider value={{todos, setUpdate, addEdit, setAddEdit}}> {/* comment */}
                 <TodoList />
-                {addEdit.is ? <AddEditForm /> : null}
+                {addEdit.is ? <AddEditForm /> : null}{/* comment */}
             </TodosContext.Provider>
             
         </div>
