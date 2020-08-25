@@ -40,7 +40,7 @@
     color: black;
   }
 
-button {
+/* button {
     float: left;
     color: white;
     background-color: #88B04B;
@@ -48,7 +48,7 @@ button {
     border:0.1em solid #000000;
     margin:0 0.2em 0.2em 0;
     border-radius:0.12em;
-}
+} */
 
   button:hover {
       color: black;

@@ -31,6 +31,7 @@
 
 h1 {
     font-size: 5rem;
+    padding: 2%;
 }
 
 #copyright {
@@ -38,10 +39,17 @@ h1 {
     vertical-align: top;
 }
 .links{
+    width: 40%;
     text-decoration: none;
     color: #24FF99;
+    padding: 3%;
+    /* box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.342); */
+    border-radius: 15px;
 }
 .links:hover{
     transition: 0.2s;
     transform: scale(1.2);
+}
+.motto{
+ font-size: 1.2rem;
 }

@@ -90,43 +90,45 @@ const SignUp = () => {
     <div className="container">
       <div className="background"></div>
       <div className="formContainer">
-        <h2 className='title'>Sign up!</h2>
+        <h2 className="title">Sign up!</h2>
         <form className="signUpForm" onSubmit={submit}>
-          <div className="error">{formErrors.username}</div>
           <div>
-          <label>
-            Username:
-            <input
-              type="text"
-              name="username"
-              value={values.username}
-              onChange={inputValueChange}
-            />
-          </label>
-          <label>
-            <div className="error">{formErrors.email}</div>
-            Email:
-            <input
-              type="email"
-              name="email"
-              value={values.email}
-              onChange={inputValueChange}
-            />
-          </label>
-          <label>
-            <div className="error">{formErrors.password}</div>
-            Password:
-            <input
-              type="password"
-              name="password"
-              value={values.password}
-              onChange={inputValueChange}
-            />
-          </label>
-          <button className="submitButton" disabled={disabled}>
-            Submit
-          </button>
-          <Link className="homeLink" to="/">Home</Link>
+            <label>
+              <div className="error">{formErrors.username}</div>
+              Username:
+              <input
+                type="text"
+                name="username"
+                value={values.username}
+                onChange={inputValueChange}
+              />
+            </label>
+            <label>
+              <div className="error">{formErrors.email}</div>
+              Email:
+              <input
+                type="email"
+                name="email"
+                value={values.email}
+                onChange={inputValueChange}
+              />
+            </label>
+            <label>
+              <div className="error">{formErrors.password}</div>
+              Password:
+              <input
+                type="password"
+                name="password"
+                value={values.password}
+                onChange={inputValueChange}
+              />
+            </label>
+            <button className="submitButton" disabled={disabled}>
+              Submit
+            </button>
+            <Link className="homeLink" to="/">
+              Home
+            </Link>
           </div>
         </form>
       </div>
@@ -137,6 +139,7 @@ const SignUp = () => {
         <h1>{user.email}</h1>
         <h1>{user.password}</h1>
       </div>
+      {/* </div> */}
     </div>
   );
 };

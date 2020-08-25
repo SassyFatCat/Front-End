@@ -12,7 +12,7 @@ const Home = () => {
         <h1>
           Wunderlist<span id="copyright">©</span>
         </h1>
-        <p>Your new favorite to-do list.</p>
+        <p className="motto">Your new favorite to-do list.</p>
         <Link className="links" to="/login">Login</Link>
         <Link className="links" to="/signup">Sign Up!</Link>
       </div>

@@ -9,57 +9,60 @@
   width: 70%;
   margin: 0 auto;
 }
-input{
-    width: 100%;
+input {
+  width: 100%;
 }
 .submitButton {
   width: 100%;
   padding: 1%;
 }
-.homeLink{
-    text-decoration: none;
+.submitButton:disabled{
     color: white;
+    font-family: 'Lato', sans-serif;
 }
-
+.homeLink {
+  text-decoration: none;
+  color: white;
+}
+label {
+  font-size: 1.2rem;
+}
 /* ERRORS CSS  */
 .error {
   color: rgb(190, 42, 42);
-  padding: 2%;
+  /* padding: 2%; */
 }
-.title{
-    padding: 0;
+.title {
+  padding: 0;
 }
-
-
 
 /* BackGtound stuffa magiger */
 
-
 .background {
-    height: 100vh;
-    width: 100vw;
-    background-image: url('alberta-2297204_1920.jpg');
-    filter: blur(3px);
-    -webkit-filter: blur(3px);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("alberta-2297204_1920.jpg");
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .formContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    background-color: rgba(0,0,0, .4);
-    color: white;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    width: 40%;
-    height: 40%;
-    text-align: center;
-    border: 2px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 40%;
+  height: 40%;
+  text-align: center;
+  border: 2px solid white;
 }
