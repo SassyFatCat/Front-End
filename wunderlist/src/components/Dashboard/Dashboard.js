@@ -5,17 +5,15 @@ import {TodosContext} from '../../context/TodosContext';
 //DUMMY DATA
 import {dummyData} from './dummyData';
 import TodoList from '../TodoList/TodoList'; 
-
-// COMPONENTS
-import AddEditForm from '../AddEditForm/AddEditForm';
+import './Dashboard.css'; 
 
 const Dashboard = () => {
 const [todos, setTodos] = useState(dummyData);
 const [update, setUpdate] = useState(true);
 const [addEdit, setAddEdit] = useState({
-    is: false,
+    is: false, 
     id: 0
-}); // is 'add' opens add form, 'edit' opens edit form, false will not mount form
+}); 
 
 const getTodos = () => {
     // perform an axiosWithAuth().get to get the todos
@@ -34,14 +32,13 @@ useEffect(() => {
 
     return (
         <div>
-            <div>
+            <div className="dash-bar">
                 <h1>Wunderlist</h1>
-                <button onClick={logOut}>Log Out</button>
+                <button className="logout-button" onClick={logOut}>Log Out</button>
             </div>
 
-            <TodosContext.Provider value={{todos, setUpdate, addEdit, setAddEdit}}>
-                <TodoList />
-                {addEdit.is ? <AddEditForm /> : null}
+            <TodosContext.Provider value={{todos, setUpdate}}>
+                <TodoList /> 
             </TodosContext.Provider>
             
         </div>
