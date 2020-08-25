@@ -10,8 +10,14 @@ form{
     flex-direction: column;
     width: 50%;
     margin: 0 auto;
-    /* justify-content: space-between; */
+    justify-content: space-between;
 }
 button{
     width: 20%;
+}
+/* ERRORS CSS  */
+
+.error{
+    color: rgb(190, 42, 42);
+    padding: 2%;
 }
