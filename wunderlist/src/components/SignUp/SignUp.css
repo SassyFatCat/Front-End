@@ -40,14 +40,14 @@ label{
 .homeLink{
   width: 50%;
     text-decoration: none;
-    color: #24FF99;
+    color: #3FB8AF;
     padding: 3%;
     font-size: 1.1rem;
     margin: 0 auto;
 }
 .homeLink:hover{
-  transition: 0.3s;
-  transform: scale(1.2);
+  color: #3fb8b0cb;
+
 }
 
 /* ERRORS CSS  */

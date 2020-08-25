@@ -45,15 +45,15 @@ p{
     display: flex;
     flex-direction: column;
 }
-.linkContainer span{
+span{
     padding: 3%;
 }
 .links{
+    padding:3%;
     width: 50%;
     text-decoration: none;
-    color: #24FF99;
+    color: #3FB8AF;
 }
 .links:hover{
-    transition: 0.2s;
-    transform: scale(1.2);
+    color: #3fb8b0cb;
 }
