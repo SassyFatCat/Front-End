@@ -31,19 +31,18 @@ useEffect(() => {
 if (todosContext.addEdit.is === 'edit') {
     // make a axiosWithAuth().get, getting the todo task with the id in todosContext.addEdit.id
     // Populate the form with the success data
-    const todoItem = {...dummyData.find(item => item.id === todosContext.addEdit.id)};
-    let checkboxTags = {
+    const todoItem = dummyData.find(item => item.id === todosContext.addEdit.id);
+    const checkboxTags = {
         school: false,
         exercise: false,
         work: false
     };
     todoItem.tags.forEach(tag => checkboxTags[tag] = true);
-    todoItem.tags = checkboxTags;
+    // todoItem.tags = checkboxTags;
     setFormData(todoItem);
-    console.log(todosContext.todos)
 }
 
-}, [todosContext.addEdit.id])
+}, )
     return (
         <div>
             <h1>AddEditForm</h1>
