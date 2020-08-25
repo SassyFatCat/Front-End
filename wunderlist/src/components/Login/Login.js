@@ -75,7 +75,6 @@ postUser(thisUser)
   };
 
 
-
 useEffect(() => {
     getUser()
   }, [])
@@ -104,7 +103,7 @@ useEffect(() => {
                 placeholder='type your password here'
                 />
             </label>
-            <button type='submit' onSubmit={onSubmit}>submit</button>
+            <button type='submit' onSubmit={onSubmit}>Submit</button>
         </div>
         <Link to='/' className='homeLink'>Home</Link>
         </form>

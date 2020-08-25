@@ -1,17 +1,65 @@
 * {
-    text-align: center;
+  text-align: center;
 }
-#container{
-    padding: 3%;
+
+.signUpForm {
+  display: flex;
+  padding: 2%;
+  flex-direction: column;
+  width: 70%;
+  margin: 0 auto;
 }
-form{
+input{
+    width: 100%;
+}
+.submitButton {
+  width: 100%;
+  padding: 1%;
+}
+.homeLink{
+    text-decoration: none;
+    color: white;
+}
+
+/* ERRORS CSS  */
+.error {
+  color: rgb(190, 42, 42);
+  padding: 2%;
+}
+.title{
+    padding: 0;
+}
+
+
+
+/* BackGtound stuffa magiger */
+
+
+.background {
+    height: 100vh;
+    width: 100vw;
+    background-image: url('alberta-2297204_1920.jpg');
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.formContainer {
     display: flex;
-    padding: 2%;
     flex-direction: column;
-    width: 50%;
-    margin: 0 auto;
-    /* justify-content: space-between; */
-}
-button{
-    width: 20%;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: rgba(0,0,0, .4);
+    color: white;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    width: 40%;
+    height: 40%;
+    text-align: center;
+    border: 2px solid white;
 }
