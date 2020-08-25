@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 const TodoDiv = styled.div`
     background: whitesmoke;
-    height: 69px;
-    width: 30%;
-    margin-left: 10%;
-    display: block;
+    /* height: 69px; */
+    width: 100%;
+    /* margin-left: 10%; */
+    /* display: block; */
     border-bottom: 1px solid #2C3E50;
     color: black;
     text-transform: capitalize;
@@ -57,6 +57,14 @@ const Button = styled.button`
       border-color:#FFFFFF;
   }
 `
+const Container = styled.div`
+width: 70%;
+/* margin: 2%; */
+display: flex;
+flex-direction: column;
+align-items: left;
+`;
 
-export {Button, Tags, TodoTitle, TodoDiv, CompletedTodoTitle}
+
+export {Button, Tags, TodoTitle, TodoDiv, CompletedTodoTitle, Container}
 

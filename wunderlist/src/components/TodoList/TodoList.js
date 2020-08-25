@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { TodosContext } from '../../context/TodosContext';
 
-import {Button, Tags, TodoTitle, TodoDiv, CompletedTodoTitle} from './TodolistStyled';
+import {Button, Tags, TodoTitle, TodoDiv, CompletedTodoTitle, Container} from './TodolistStyled';
 
 const TodoList = () => {
 const todosContext = useContext(TodosContext); 
@@ -22,11 +22,13 @@ const handleCompleted = item => {
     const newItem = {...item, completed: true}
     // axiosWithAuth.put()
     //.then
+  
 }
 
     return (
-        <div>
-            {todosContext.todos.map(item => {
+        <Container>
+            
+            {todosContext.searchResults.map(item => {
                 return (
                     <TodoDiv>
                         {item.completed ? <CompletedTodoTitle>{item.name}</CompletedTodoTitle> : <TodoTitle>{item.name}</TodoTitle>}
@@ -52,7 +54,7 @@ const handleCompleted = item => {
                     </TodoDiv>
                 )
             })}
-        </div>
+        </Container>
     )
 }
 

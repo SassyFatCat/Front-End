@@ -10,7 +10,7 @@ const Header = styled.h1`
 
 const LogoutButton = styled.button`
     height: 5vh;
-    justify-self: flex-end;
+    margin-left: 3%;
 `
 
 const DashBar = styled.div` 
@@ -21,4 +21,17 @@ const DashBar = styled.div`
     margin-bottom: 2%;
 `
 
-export {Header, LogoutButton, DashBar}
+const TodoListContainer = styled.div`
+display: flex;
+width: 90%;
+margin: 2%;
+justify-content: center;
+`;
+
+const TodoHeader = styled.h1`
+text-align: left;
+text-decoration: underline;
+margin-bottom: 1.5%;
+`;
+
+export {Header, LogoutButton, DashBar, TodoListContainer, TodoHeader}

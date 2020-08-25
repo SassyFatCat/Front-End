@@ -115,6 +115,10 @@ if (todosContext.addEdit.is === 'edit') {
                     onChange={onCheckboxChange}
                 /></label> 
                 <button onClick={submit}>{todosContext.addEdit.is === 'add' ? ('Submit') : ('Submit changes')}</button>
+                <button onClick={event => {
+                  event.preventDefault();
+                  todosContext.setAddEdit(false);
+                }}>Cancel</button>
             </form>
         </div>
     )

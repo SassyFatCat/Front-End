@@ -1,7 +1,7 @@
 // LIBRARIES, UTILITIES, CSS
 import React, {useState, useEffect} from 'react';
 import {TodosContext} from '../../context/TodosContext';
-import {Header, LogoutButton, DashBar} from './DashboardStyled';
+import {Header, LogoutButton, DashBar, TodoListContainer, TodoHeader} from './DashboardStyled';
 
 //DUMMY DATA
 import {dummyData} from './dummyData';
@@ -13,6 +13,8 @@ import AddEditForm from '../AddEditForm/AddEditForm'
 
 const Dashboard = () => {
 const [todos, setTodos] = useState(dummyData);
+const [searchResults, setSearchResults] = useState(todos);
+const [searchTerm, setSearchTerm] = useState('');
 const [update, setUpdate] = useState(true);
 const [addEdit, setAddEdit] = useState({
     is: false, 
@@ -35,6 +37,10 @@ event.preventDefault();
 setAddEdit({
     is: 'add'
 })
+};
+
+const filterTodos = searchTerm => {
+setSearchResults(todos.filter(todo => searchTerm.test(todo.name)));
 }
 
 useEffect(() => {
@@ -49,20 +55,36 @@ useEffect(() => {
             </DashBar>
 
             <div>
-                <form>
+                <form style={{width: '20%', margin: 'auto'}}>
                     <label htmlFor="search">Search</label>
                     <input
                     type="text"
                     name="search"
+                    onChange={event => {
+                        const {value} = event.target;
+                        setSearchTerm(value);
+                        const term = new RegExp(`${value}`, 'i')
+                        filterTodos(term)
+                    }}
+                    value={searchTerm}
                     />
                 </form>
             </div>
 
-            <TodosContext.Provider value={{todos, update, setUpdate, addEdit, setAddEdit}}> {/* comment */}
-                <TodoList />
-                <LogoutButton onClick={addTodo}>Add Todo</LogoutButton>
+            <TodosContext.Provider value={{todos, update, setUpdate, addEdit, setAddEdit, searchResults}}> {/* comment */}
+            <TodoListContainer>
+                <div style={{display: 'flex', flexDirection: 'column', width: '50%'}}>
+                    <div style={{display: 'flex', alignItems: 'center'}}>
+                        <TodoHeader>My To-do List</TodoHeader>
+                        {!addEdit.is && <LogoutButton onClick={addTodo}>Add Todo</LogoutButton>}
+                    </div>
+                    <TodoList />
+                </div>
+                <div style={{display: 'flex', flexDirection: 'column'}}>
+                
                 {addEdit.is ? <AddEditForm /> : null}{/* comment */}
-
+                </div>
+            </TodoListContainer>
             </TodosContext.Provider>
             
         </div>
