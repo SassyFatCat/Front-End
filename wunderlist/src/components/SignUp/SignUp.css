@@ -8,5 +8,10 @@ form{
     display: flex;
     padding: 2%;
     flex-direction: column;
-    
+    width: 50%;
+    margin: 0 auto;
+    /* justify-content: space-between; */
+}
+button{
+    width: 20%;
 }

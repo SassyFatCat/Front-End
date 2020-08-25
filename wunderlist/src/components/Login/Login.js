@@ -1,17 +1,20 @@
+
 import React, {useState, useEffect} from 'react';
 import {Link } from 'react-router-dom';
 import axios from 'axios';
 import * as yup from 'yup';
 import './Login.css'
 
-const initialValues={
-    username: '',
-    password: '',
-}
+
+const initialValues = {
+  username: "",
+  password: "",
+};
 
 const Login = () => {
-const [userInfo, setUserInfo] = useState([])
-const [values, setValues] = useState(initialValues)
+  const [userInfo, setUserInfo] = useState([]);
+  const [values, setValues] = useState(initialValues);
+
 
 const thisUrl = 'https://reqres.in/api/users'
 
@@ -21,10 +24,12 @@ const update = (name, value) => {
   
 }
 
-const onChange = event => {
-    const {name, value} = event.target
-    update(name, value)
-}
+
+  const onChange = (event) => {
+    const { name, value } = event.target;
+    update(name, value);
+  };
+
 
 const getUser = () => {
     axios.get(thisUrl)
@@ -62,6 +67,12 @@ const submit = () => {
 }
 postUser(thisUser)
 }
+
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    submit();
+  };
 
 
 const onSubmit = event => {
@@ -107,3 +118,4 @@ useEffect(() => {
 
 }
 export default Login
+
