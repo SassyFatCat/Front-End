@@ -1,31 +1,31 @@
-import React, {useState, useEffect, useContext} from 'react'
-import { TodosContext } from '../../context/TodosContext';
-import {dummyData} from '../Dashboard/dummyData';
+import React, { useState, useEffect, useContext } from "react";
+import { TodosContext } from "../../context/TodosContext";
+import { dummyData } from "../Dashboard/dummyData";
 
 const initialForm = {
-    name: '',
-    id: 0,
-    tags: {
-        school: false,
-        exercise: false,
-        work: false
-    },
-    completed: false,
-    dueDate: null
+  name: "",
+  id: 0,
+  tags: {
+    school: false,
+    exercise: false,
+    work: false,
+  },
+  completed: false,
+  dueDate: null,
 };
 
 const AddEditForm = () => {
-const [formData, setFormData] = useState(initialForm);
-const todosContext = useContext(TodosContext);
+  const [formData, setFormData] = useState(initialForm);
+  const todosContext = useContext(TodosContext);
 
-
-const onChange = event => {
-    const {name, value} = event.target;
+  const onChange = (event) => {
+    const { name, value } = event.target;
     setFormData({
-        ...formData,
-        [name]: value
-    })
-};
+      ...formData,
+      [name]: value,
+    });
+  };
+
 
 const onCheckboxChange = event => {
 const {name, checked} = event.target;
@@ -77,14 +77,16 @@ if (todosContext.addEdit.is === 'edit') {
         <div>
             <h1>{todosContext.addEdit.is === 'add' ? ('Add a new todo') : ('Edit your todo')}</h1>
 
-            <form>
-                <label>Task: </label>
-                <input
-                    type='text'
-                    name='name'
-                    value={formData.name}
-                    onChange={onChange}
-                />
+
+      <form>
+        <label>Task: </label>
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={onChange}
+        />
+
 
                 <label>School
                 <input 
@@ -116,6 +118,7 @@ if (todosContext.addEdit.is === 'edit') {
             </form>
         </div>
     )
+
 };
 
-export default AddEditForm
+export default AddEditForm;
