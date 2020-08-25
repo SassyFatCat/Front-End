@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { TodosContext } from '../../context/TodosContext';
 
-import './Todolist.css'; 
+import {Button, Tags, TodoTitle, TodoDiv} from './TodolistStyled';
 
 const TodoList = () => {
 const todosContext = useContext(TodosContext); 
@@ -17,21 +17,21 @@ const editTodo = id => {
         <div>
             {todosContext.todos.map(item => {
                 return (
-                    <div className="tasks">
-                        <h2>{item.name}</h2>
-                        <button>Delete</button>
-                        <button onClick={event => {
+                    <TodoDiv>
+                        <TodoTitle>{item.name}</TodoTitle>
+                        <Button>Delete</Button>
+                        <Button onClick={event => {
                             event.preventDefault();
                             editTodo(item.id)
-                        }}>Edit</button>
+                        }}>Edit</Button>
                         {item.tags.map(tag => {
                             return (
-                                <span>
+                                <Tags>
                                     {tag}
-                                </span>
+                                </Tags>
                             )
                         })}
-                    </div>
+                    </TodoDiv>
                 )
             })}
         </div>

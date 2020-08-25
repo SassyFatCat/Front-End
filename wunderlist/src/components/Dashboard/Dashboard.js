@@ -1,11 +1,12 @@
 // LIBRARIES, UTILITIES, CSS
 import React, {useState, useEffect} from 'react';
 import {TodosContext} from '../../context/TodosContext';
+import {Header, LogoutButton, DashBar} from './DashboardStyled';
 
 //DUMMY DATA
 import {dummyData} from './dummyData';
 import TodoList from '../TodoList/TodoList'; 
-import './Dashboard.css'; 
+
 
 // COMPONENTS
 import AddEditForm from '../AddEditForm/AddEditForm'
@@ -35,10 +36,10 @@ useEffect(() => {
 
     return (
         <div>
-            <div className="dash-bar">
-                <h1>Wunderlist</h1>
-                <button className="logout-button" onClick={logOut}>Log Out</button>
-            </div>
+            <DashBar>
+                <Header>Wunderlist</Header>
+                <LogoutButton onClick={logOut}>Log Out</LogoutButton>
+            </DashBar>
 
 
             <TodosContext.Provider value={{todos, setUpdate, addEdit, setAddEdit}}> {/* comment */}
