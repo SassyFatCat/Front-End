@@ -18,17 +18,17 @@ const Login = () => {
 
 const thisUrl = 'https://reqres.in/api/users'
 
-const update = (name, value) => {
-    const updateUser = {[name]: value, ...values}
-    setValues(updateUser)
+// const update = (name, value) => {
+//     const updateUser = {[name]: value, ...values}
+//     setValues(updateUser)
   
-}
 
 
-  const onChange = (event) => {
-    const { name, value } = event.target;
-    update(name, value);
-  };
+
+  // const onChange = (event) => {
+  //   const { name, value } = event.target;
+  //   update(name, value);
+  // };
 
 
 const getUser = () => {
@@ -50,7 +50,7 @@ const postUser = thisUser => {
     axios.post('https://reqres.in/api/users', thisUser)
     .then(res => {
         setUserInfo([...userInfo, res.data])
-    
+        console.log('axios post worked')
     })
     .catch(error => {
       console.log('check axios post')
@@ -65,20 +65,20 @@ const submit = () => {
     username: values.username.trim(),
     password: values.password
 }
+
 postUser(thisUser)
 }
 
+const inputValueChange = (event) => {
+  const {name,value} = event.target
+  setValues({
+    ...values,
+    [name]: value,
+  });
+};
 
-  const onSubmit = (event) => {
-    event.preventDefault();
-    submit();
-  };
 
 
-const onSubmit = event => {
-    event.preventDefault()
-    submit()
-}
 
 useEffect(() => {
     getUser()
@@ -87,13 +87,13 @@ useEffect(() => {
     return(
         <>
         <div className = 'login'></div>
-        <form className='loginContainer' onSubmit={onSubmit}>
+        <form className='loginContainer' onSubmit={submit}>
         <h2>Login Here</h2>
         <div className='loginInfo'>
             <label>Username: 
                 <input
-                //  value={values.username}
-                 onChange={onChange}
+                 value={values.username}
+                 onChange={inputValueChange}
                 name='username'
                 type='text'
                 placeholder='type your username here'
@@ -101,14 +101,14 @@ useEffect(() => {
             </label>
             <label>Password: 
                 <input
-                //  value={values.password}
-                 onChange={onChange}
+                 value={values.password}
+                 onChange={inputValueChange}
                 name='password'
                 type='text'
                 placeholder='type your password here'
                 />
             </label>
-            <button type='submit' onSubmit={onSubmit}>submit</button>
+            <button className='loginButton'>submit</button>
         </div>
         <Link to='/' className='homeLink'>Home</Link>
         </form>

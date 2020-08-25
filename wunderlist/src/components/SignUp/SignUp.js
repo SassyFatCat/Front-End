@@ -48,7 +48,7 @@ const SignUp = () => {
 
   return (
     <div id="container">
-      <h3>Don't have an account? Sign up!</h3>
+      <h2>Don't have an account? Sign up!</h2>
       <Link to="/">Home</Link>
       <form onSubmit={submit}>
         <label>
