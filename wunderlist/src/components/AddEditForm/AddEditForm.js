@@ -27,6 +27,33 @@ const onChange = event => {
     })
 };
 
+const onCheckboxChange = event => {
+const {name, checked} = event.target;
+setFormData({
+    ...formData,
+    tags: {
+        ...formData.tags,
+        [name]: checked
+    }
+})
+}
+
+const submit = event => {
+event.preventDefault();
+let newTodo = {...formData, tags: formData.tags};
+newTodo.tags = Object.keys(formData.tags).filter(tag => formData.tags[tag] === true)
+
+if (todosContext.addEdit.is === 'add') {
+    //.post()
+    todosContext.setUpdate(!todosContext.update)
+}
+else {
+    //.put()
+    todosContext.setUpdate(!todosContext.update)
+}
+// newTodo is ready for .put() or .post()
+}
+
 useEffect(() => {
 if (todosContext.addEdit.is === 'edit') {
     // make a axiosWithAuth().get, getting the todo task with the id in todosContext.addEdit.id
@@ -34,7 +61,6 @@ if (todosContext.addEdit.is === 'edit') {
 
     const todoItem = {...dummyData.find(item => item.id === todosContext.addEdit.id)};{/* comment */}
     let checkboxTags = {
-
         school: false,
         exercise: false,
         work: false
@@ -46,12 +72,10 @@ if (todosContext.addEdit.is === 'edit') {
     // console.log(todosContext.todos)
 
 }
-
 }, [todosContext.addEdit.id])
     return (
         <div>
-            <h1>AddEditForm</h1>
-            <h2>{todosContext.addEdit.id}</h2>
+            <h1>{todosContext.addEdit.is === 'add' ? ('Add a new todo') : ('Edit your todo')}</h1>
 
             <form>
                 <label>Task: </label>
@@ -68,6 +92,7 @@ if (todosContext.addEdit.is === 'edit') {
                     name='school'
                     value='school'
                     checked={formData.tags.school}
+                    onChange={onCheckboxChange}
                 /></label>
 
                 <label>Work
@@ -76,6 +101,7 @@ if (todosContext.addEdit.is === 'edit') {
                     name='work'
                     value='work'
                     checked={formData.tags.work}
+                    onChange={onCheckboxChange}
                  /></label> 
 
                 <label>Exercise       
@@ -84,7 +110,9 @@ if (todosContext.addEdit.is === 'edit') {
                     name='exercise'
                     value='exercise'
                     checked={formData.tags.exercise}
+                    onChange={onCheckboxChange}
                 /></label> 
+                <button onClick={submit}>{todosContext.addEdit.is === 'add' ? ('Submit') : ('Submit changes')}</button>
             </form>
         </div>
     )

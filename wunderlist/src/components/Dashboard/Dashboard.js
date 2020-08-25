@@ -30,6 +30,13 @@ const logOut = event => {
     // route the user to /Login
 }
 
+const addTodo = event => {
+event.preventDefault();
+setAddEdit({
+    is: 'add'
+})
+}
+
 useEffect(() => {
     getTodos()
 }, [update]) //Dependency array will watch for changes in slice of state that changes when .put() or .delete() or adding new task
@@ -42,8 +49,9 @@ useEffect(() => {
             </DashBar>
 
 
-            <TodosContext.Provider value={{todos, setUpdate, addEdit, setAddEdit}}> {/* comment */}
+            <TodosContext.Provider value={{todos, update, setUpdate, addEdit, setAddEdit}}> {/* comment */}
                 <TodoList />
+                <LogoutButton onClick={addTodo}>Add Todo</LogoutButton>
                 {addEdit.is ? <AddEditForm /> : null}{/* comment */}
 
             </TodosContext.Provider>
