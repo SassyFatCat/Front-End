@@ -40,7 +40,7 @@ if (todosContext.addEdit.is === 'edit') {
     todoItem.tags.forEach(tag => checkboxTags[tag] = true);
     todoItem.tags = checkboxTags;
     setFormData(todoItem);
-    console.log(todosContext.todos)
+    // console.log(todosContext.todos)
 }
 
 }, [todosContext.addEdit.id])
