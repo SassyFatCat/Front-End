@@ -37,8 +37,11 @@ useEffect(() => {
                 <button className="logout-button" onClick={logOut}>Log Out</button>
             </div>
 
-            <TodosContext.Provider value={{todos, setUpdate}}>
-                <TodoList /> 
+
+            <TodosContext.Provider value={{todos, setUpdate, addEdit, setAddEdit}}> {/* comment */}
+                <TodoList />
+                {addEdit.is ? <AddEditForm /> : null}{/* comment */}
+
             </TodosContext.Provider>
             
         </div>
