@@ -1,7 +1,7 @@
 const dummyData = [
     {
         name: 'Shopping',
-        completed: false,
+        completed: true,
         id: 0,
         tags: ['work', 'school']
     },

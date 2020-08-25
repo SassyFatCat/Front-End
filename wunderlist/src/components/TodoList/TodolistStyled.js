@@ -1,10 +1,7 @@
 import styled from 'styled-components'
 const TodoDiv = styled.div`
     background: whitesmoke;
-    height: 69px;
-    width: 30%;
-    margin-left: 10%;
-    display: block;
+    width: 100%;
     border-bottom: 1px solid #2C3E50;
     color: black;
     text-transform: capitalize;
@@ -20,17 +17,20 @@ const TodoDiv = styled.div`
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     transition: 0.5s background-color; 
+  
     &:hover {
       background-color: white; 
     }
   `
 
 
-
 const TodoTitle = styled.h2`
       font-size: 1.2rem;
   `
-
+const CompletedTodoTitle = styled.h2`
+    font-size: 1.2rem; 
+    text-decoration: line-through; 
+`
 const Tags = styled.span`
     display: flex;
     float: right;
@@ -55,6 +55,19 @@ const Button = styled.button`
       border-color:#FFFFFF;
   }
 `
+const Container = styled.div`
+width: 70%;
+/* margin: 2%; */
+display: flex;
+flex-direction: column;
+align-items: left;
+`;
 
-export {Button, Tags, TodoTitle, TodoDiv}
+const FormDiv = styled.div`
+  display: flex;
+  flex-direction: column; 
+`
+
+
+export {Button, Tags, TodoTitle, TodoDiv, CompletedTodoTitle, Container}
 
