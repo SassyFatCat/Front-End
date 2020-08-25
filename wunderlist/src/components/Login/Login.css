@@ -46,13 +46,17 @@ input{
     margin-bottom: 5%;
 }
 
+
 .loginButton{
+
     width: 50%;
     margin-left: 30%;
     font-size: 1rem;
     margin-bottom: 5%;
+
     background-color: #3A7CA5;
 }
+
 
 .homeLink{
     color: white;

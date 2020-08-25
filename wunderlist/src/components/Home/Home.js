@@ -1,23 +1,23 @@
 // LIBRARIES, UTILITIES, CSS
 
-import React from 'react';
-import {Link} from 'react-router-dom';
-import './Home.css';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Home.css";
 
 const Home = () => {
-    return (
-        <div id='container'>
-            <div id='background'></div>
-            <div id='title'>
-                <h1>Wunderlist<span id='copyright'>©</span></h1>
-                <p>Your new favorite to-do list.</p>
-                <Link to='/login'>Login</Link>
-                <Link to='/signup'>Sign Up!</Link>
-            </div>
-            
-        </div>
-    )
-}
-
+  return (
+    <div className="homeContainer">
+      <div id="background"></div>
+      <div id="title">
+        <h1>
+          Wunderlist<span id="copyright">©</span>
+        </h1>
+        <p>Your new favorite to-do list.</p>
+        <Link className="links" to="/login">Login</Link>
+        <Link className="links" to="/signup">Sign Up!</Link>
+      </div>
+    </div>
+  );
+};
 
 export default Home;

@@ -103,7 +103,6 @@ const inputValueChange = (event) => {
 
 
 
-
 useEffect(() => {
     getUser()
   }, [])
@@ -132,12 +131,14 @@ useEffect(() => {
                 placeholder='type your password here'
                 />
             </label>
+
             <button className='loginButton'>submit</button>
         </div>
 
         <div className='myErrors'>
         <div>{errors.username}</div>
         <div>{errors.password}</div>
+
         </div>
 
         <Link to='/' className='homeLink'>Home</Link>
