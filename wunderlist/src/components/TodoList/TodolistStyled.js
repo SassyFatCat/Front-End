@@ -26,11 +26,13 @@ const TodoDiv = styled.div`
   `
 
 
-
 const TodoTitle = styled.h2`
       font-size: 1.2rem;
   `
-
+const CompletedTodoTitle = styled.h2`
+    font-size: 1.2rem; 
+    text-decoration: line-through; 
+`
 const Tags = styled.span`
     display: flex;
     float: right;
@@ -56,5 +58,5 @@ const Button = styled.button`
   }
 `
 
-export {Button, Tags, TodoTitle, TodoDiv}
+export {Button, Tags, TodoTitle, TodoDiv, CompletedTodoTitle}
 
