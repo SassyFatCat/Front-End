@@ -37,3 +37,11 @@ h1 {
     font-size: 1rem;
     vertical-align: top;
 }
+.links{
+    text-decoration: none;
+    color: #24FF99;
+}
+.links:hover{
+    transition: 0.2s;
+    transform: scale(1.2);
+}
