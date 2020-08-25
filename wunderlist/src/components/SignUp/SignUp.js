@@ -92,7 +92,7 @@ const SignUp = () => {
       <div className="formContainer">
         <h2 className="title">Sign up!</h2>
         <form className="signUpForm" onSubmit={submit}>
-          <div>
+          <div className="insideFormContainer">
             <label>
               <div className="error">{formErrors.username}</div>
               Username:
@@ -123,23 +123,17 @@ const SignUp = () => {
                 onChange={inputValueChange}
               />
             </label>
-            <button className="submitButton" disabled={disabled}>
-              Submit
-            </button>
+            <div>
+              <button className="submitButton" disabled={disabled}>
+                Submit
+              </button>
+            </div>
             <Link className="homeLink" to="/">
               Home
             </Link>
           </div>
         </form>
       </div>
-      {/* REMOVE THE CODE BELOW LATER */}
-      <div>
-        REMOVE THIS LATER
-        <h1>{user.username}</h1>
-        <h1>{user.email}</h1>
-        <h1>{user.password}</h1>
-      </div>
-      {/* </div> */}
     </div>
   );
 };
