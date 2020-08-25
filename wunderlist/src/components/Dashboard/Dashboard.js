@@ -7,6 +7,9 @@ import {dummyData} from './dummyData';
 import TodoList from '../TodoList/TodoList'; 
 import './Dashboard.css'; 
 
+// COMPONENTS
+import AddEditForm from '../AddEditForm/AddEditForm'
+
 const Dashboard = () => {
 const [todos, setTodos] = useState(dummyData);
 const [update, setUpdate] = useState(true);
@@ -37,8 +40,11 @@ useEffect(() => {
                 <button className="logout-button" onClick={logOut}>Log Out</button>
             </div>
 
-            <TodosContext.Provider value={{todos, setUpdate}}>
-                <TodoList /> 
+
+            <TodosContext.Provider value={{todos, setUpdate, addEdit, setAddEdit}}> {/* comment */}
+                <TodoList />
+                {addEdit.is ? <AddEditForm /> : null}{/* comment */}
+
             </TodosContext.Provider>
             
         </div>
