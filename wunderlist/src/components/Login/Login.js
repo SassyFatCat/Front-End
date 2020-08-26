@@ -14,12 +14,13 @@ const initialErrors = {
   username: "",
   password: "",
 };
+const initialDisabled = true;
 
-const Login = (props) => {
-  // const { disabled } = props;
+const Login = () => {
   const [userInfo, setUserInfo] = useState([]);
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState(initialErrors);
+  const [disabled, setDisabled] = useState(initialDisabled);
 
   const thisUrl = "https://reqres.in/api/users";
 
@@ -92,12 +93,12 @@ const Login = (props) => {
       });
   };
 
-  // useEffect(() => {
-  //   //THis disables the submit button till it all the vorm validation fields are filled and validated
-  //   LoginformSchema.isValid(values).then((valid) => {
-  //     disabled(!valid);
-  //   });
-  // }, [values]);
+  useEffect(() => {
+    //THis disables the submit button till it all the vorm validation fields are filled and validated
+    LoginformSchema.isValid(values).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [values]);
 
   useEffect(() => {
     getUser();
@@ -132,7 +133,7 @@ const Login = (props) => {
           </label>
           <div className='myErrors'><span className='error'>{errors.password}</span></div>
           <div>
-            <button className="loginButton">Submit</button>
+            <button disabled={disabled} className="loginButton">Submit</button>
           </div>
         </div>
 
