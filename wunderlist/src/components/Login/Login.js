@@ -142,6 +142,7 @@ const history = useHistory()
        
             <label>Username: 
                 <input
+                className='input'
                  value={values.username}
                  onChange={inputValueChange}
                 name='username'
@@ -151,6 +152,7 @@ const history = useHistory()
             </label>
             <label>Password: 
                 <input
+                className='input'
                  value={values.password}
                  onChange={inputValueChange}
                 name='password'
