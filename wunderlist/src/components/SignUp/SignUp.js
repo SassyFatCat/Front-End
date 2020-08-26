@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import * as yup from "yup";
 import SignUpFormSchema from "./SignUpFormSchema";
 import SigningPaper from "./paper-24.png";
+import { useSpring, animated } from "react-spring";
 
 const initialFormValues = {
   username: "",
@@ -87,13 +88,15 @@ const SignUp = () => {
     });
   }, [values]);
 
+  // This is animation below till the return
+const fade = useSpring({opacity: 0, from: {opacity: 1}})
   return (
     <div className="container">
       <div className="background"></div>
       <div className="formContainer">
         <h2 className="title">
           Sign up! &nbsp;
-          <img className="contract" src={SigningPaper} />
+          <animated.img className="contract" style={fade} src={SigningPaper} />
         </h2>
         <form className="signUpForm" onSubmit={submit}>
           <div className="insideFormContainer">
