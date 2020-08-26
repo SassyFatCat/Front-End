@@ -4,6 +4,11 @@ export default function useFetch({ api, method, url, data = null, config = null}
     const [response, setResponse] = useState(null);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(true);
+    const [update, setUpdate] = useState(true); 
+
+    const causeRerender = () => {
+        setUpdate(!update)
+    }
 
     useEffect(() => {
         const fetchData = async () => {
@@ -22,7 +27,7 @@ export default function useFetch({ api, method, url, data = null, config = null}
             }
         };
         fetchData();
-    }, [api, method, url, data, config]);
+    }, [api, method, url, data, config, update]);
 
-    return {response, error, isLoading}
+    return {response, error, isLoading, causeRerender}
 }

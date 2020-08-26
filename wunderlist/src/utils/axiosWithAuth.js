@@ -12,5 +12,8 @@ import axios from 'axios';
 // }; 
 
 export const axiosWithAuth = axios.create({
-    baseURL: "https://reqres.in"
-})
+    baseURL: " http://wonderlist-backend.herokuapp.com", 
+    headers: {
+        Authorization: localStorage.getItem('token')
+    }
+}); 

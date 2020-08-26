@@ -13,7 +13,7 @@ import useFetch from '../../utils/useFetch';
 import {axiosWithAuth} from '../../utils/axiosWithAuth'
 
 const Dashboard = () => {
-const {response, error, isLoading} = useFetch({
+const {response, error, isLoading, causeRerender} = useFetch({
     api: axiosWithAuth,
     method: 'get',
     url: '/api/users?page=2'
@@ -28,7 +28,8 @@ const [addEdit, setAddEdit] = useState({
 }); 
 
 const getTodos = () => {
-    // perform an axiosWithAuth().get to get the todos
+    // perform an axiosWithAuth().get to get the todos\
+
     return null
 };
 
