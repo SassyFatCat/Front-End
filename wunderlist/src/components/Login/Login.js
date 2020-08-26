@@ -119,6 +119,7 @@ const Login = (props) => {
               placeholder="type your username here"
             />
           </label>
+          <div className='myErrors'><span className='error'>{errors.username}</span></div>
           <label>
             Password:
             <input
@@ -129,15 +130,16 @@ const Login = (props) => {
               placeholder="type your password here"
             />
           </label>
+          <div className='myErrors'><span className='error'>{errors.password}</span></div>
           <div>
             <button className="loginButton">Submit</button>
           </div>
         </div>
 
-        <div className="myErrors">
+        {/* <div className="myErrors">
           <div>{errors.username}</div>
           <div>{errors.password}</div>
-        </div>
+        </div> */}
 
         <Link to="/" className="homeLink">
           Home
