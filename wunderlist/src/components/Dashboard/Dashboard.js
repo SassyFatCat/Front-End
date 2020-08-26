@@ -8,9 +8,16 @@ import {dummyData} from './dummyData';
 
 // COMPONENTS
 import AddEditForm from '../AddEditForm/AddEditForm'
-import TodoList from '../TodoList/TodoList'; 
+import TodoList from '../TodoList/TodoList';
+import useFetch from '../../utils/useFetch';
+import {axiosWithAuth} from '../../utils/axiosWithAuth'
 
 const Dashboard = () => {
+const {response, error, isLoading} = useFetch({
+    api: axiosWithAuth,
+    method: 'get',
+    url: '/api/users?page=2'
+});
 const [todos, setTodos] = useState(dummyData);
 const [searchResults, setSearchResults] = useState(todos);
 const [searchTerm, setSearchTerm] = useState('');
@@ -43,8 +50,11 @@ setSearchResults(todos.filter(todo => searchTerm.test(todo.name)));
 }
 
 useEffect(() => {
-    getTodos()
-}, [update]) //Dependency array will watch for changes in slice of state that changes when .put() or .delete() or adding new task
+    // getTodos()
+    console.log(response)
+    console.log(error);
+    console.log(isLoading)
+}, [update, response, error, isLoading]) //Dependency array will watch for changes in slice of state that changes when .put() or .delete() or adding new task
 
     return (
         <div>
