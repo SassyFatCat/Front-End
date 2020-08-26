@@ -131,6 +131,9 @@ const SignUp = () => {
             <Link className="homeLink" to="/">
               Home
             </Link>
+            {/* <div>
+              <h1>{user.username}</h1>
+            </div> */}
           </div>
         </form>
       </div>
