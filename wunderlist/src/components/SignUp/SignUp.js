@@ -5,8 +5,7 @@ import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import SignUpFormSchema from "./SignUpFormSchema";
 import SigningPaper from "./paper-24.png";
-import { useSpring, animated } from "react-spring";
-import { Keyframes } from "react-spring/renderprops";
+import { useSpring, animated, interpolate } from "react-spring";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 const initialFormValues = {
@@ -26,7 +25,7 @@ const initialFormErrors = {
 const initialDisabled = true;
 
 const SignUp = () => {
-  const history = useHistory()
+  const history = useHistory();
   const [user, setUser] = useState([]);
   const [values, setValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors); // object
@@ -50,12 +49,12 @@ const SignUp = () => {
     axiosWithAuth
       .post("/user/register", newUser)
       .then((res) => {
-        localStorage.setItem("token",res.data);
-        history.push("/dashboard")//this sends the user to the dashboard once they sign up
+        localStorage.setItem("token", res.data);
+        history.push("/dashboard"); //this sends the user to the dashboard once they sign up
         console.log(res.data);
       })
       .catch((err) => {
-        alert("Sign Up Failed!")
+        alert("Sign Up Failed!");
         console.log(err);
       })
       .finally(() => {
@@ -99,37 +98,40 @@ const SignUp = () => {
     });
   }, [values]);
 
-  // This is animation below till the return
-  const fade = useSpring({ opacity: 0, from: { opacity: 1 } });
+  // This is animation stuff below till the return
 
-  // Will fade children in and out in a loop
-  // const Container = Keyframes.Spring({
-  //   // Single props
-  //   show: {opacity: 1},
-  //   // Chained animations (arrays)
-  //   showAndHide: [{opacity: 1}, {opacity: 0}],
-  //   // Functions with side-effects with access to component props
-  //   wiggle: async (next, cancel, ownProps) => {
-  //     await next({x: 100, config: config.wobbly})
-  //     await delay(1000)
-  //     await next({x: 0, config: config.gentle})
-  //   }
-  // })
+  const { o, xyz, color } = useSpring({
+    from: { o: 0, xyz: [0, 0, 0], color: "#16425B" },
+    o: 0.95,
+    xyz: [10, 20, 5],
+    color: "white",
+  });
 
   return (
-    <div className="container">
+    <>
       <div className="background"></div>
-      <div className="formContainer">
-        <h2 className="title">
-          <animated.img
-            className="contract"
-            style={fade}
-            src={SigningPaper}
-          ></animated.img>
-          &nbsp;Sign up!&nbsp;
-          <animated.img className="contract" style={fade} src={SigningPaper} />
-        </h2>
-        <form className="signUpForm" onSubmit={submit}>
+      <form className="signUpForm" onSubmit={submit}>
+        <animated.div
+          className="formContainer"
+          style={{
+            color,
+            background: o.interpolate((o) => `rgba(22,66,91, ${o})`),
+            transform: xyz.interpolate(
+              (x, y, z) => `translate3d(${x}px, ${y}px, ${z}px)`
+            ),
+            border: interpolate([o, color], (o, c) => `${o * 10}px solid ${c}`),
+            padding: o
+              .interpolate({ range: [4, 0.2, 5], output: [0, 0, 10] })
+              .interpolate((o) => `${o}%`),
+            borderColor: o.interpolate({
+              range: [0, 1],
+              output: ["blue", "#81C3D7"],
+            }),
+            opacity: o.interpolate([0.1, 0.2, 0.6, 1], [1, 0.1, 0.5, 1]),
+          }}
+        >
+          <h2 className="title">Sign up!</h2>
+
           <div className="insideFormContainer">
             <label>
               First Name:
@@ -195,17 +197,15 @@ const SignUp = () => {
               <button className="submitButton" disabled={disabled}>
                 Submit
               </button>
+              <div className="spacer"></div>
             </div>
             <Link className="homeLink" to="/">
               Home
             </Link>
-            {/* <div>
-              <h1>{user.username}</h1>
-            </div> */}
           </div>
-        </form>
-      </div>
-    </div>
+        </animated.div>
+      </form>
+    </>
   );
 };
 
