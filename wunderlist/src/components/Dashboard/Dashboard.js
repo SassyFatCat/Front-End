@@ -2,9 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import {TodosContext} from '../../context/TodosContext';
 import {Header, LogoutButton, DashBar, TodoListContainer, TodoHeader, FormDiv, ListHeader, SearchForm} from './DashboardStyled';
-
-//DUMMY DATA
-import {dummyData} from './dummyData';
+import {useHistory} from 'react-router-dom';
 
 // COMPONENTS
 import AddEditForm from '../AddEditForm/AddEditForm'
@@ -13,30 +11,30 @@ import useFetch from '../../utils/useFetch';
 import {axiosWithAuth} from '../../utils/axiosWithAuth'
 
 const Dashboard = () => {
-const {response, error, isLoading, causeRerender} = useFetch({
+const history = useHistory();
+const {response, error, isLoading, causeRerender, update} = useFetch({
     api: axiosWithAuth,
     method: 'get',
-    url: '/api/users?page=2'
+    url: '/todos'
 });
-const [todos, setTodos] = useState(dummyData);
-const [searchResults, setSearchResults] = useState(todos);
+const [searchResults, setSearchResults] = useState(response);
 const [searchTerm, setSearchTerm] = useState('');
-const [update, setUpdate] = useState(true);
+// const [update, setUpdate] = useState(true);
 const [addEdit, setAddEdit] = useState({
     is: false, 
     id: 0
 }); 
 
-const getTodos = () => {
-    // perform an axiosWithAuth().get to get the todos\
+// const getTodos = () => {
+//     // perform an axiosWithAuth().get to get the todos\
 
-    return null
-};
+//     return null
+// };
 
 const logOut = event => {
     event.preventDefault();
-    // clear authentication token from localStorage or state
-    // route the user to /Login
+    localStorage.removeItem('token')
+    history.push('/login');
 }
 
 const addTodo = event => {
@@ -47,15 +45,12 @@ setAddEdit({
 };
 
 const filterTodos = searchTerm => {
-setSearchResults(todos.filter(todo => searchTerm.test(todo.name)));
+setSearchResults(response.filter(todo => searchTerm.test(todo.name)));
 }
 
 useEffect(() => {
-    // getTodos()
-    console.log(response)
-    console.log(error);
-    console.log(isLoading)
-}, [update, response, error, isLoading]) //Dependency array will watch for changes in slice of state that changes when .put() or .delete() or adding new task
+    setSearchResults(response)
+}, [response, error, isLoading, update]) //Dependency array will watch for changes in slice of state that changes when .put() or .delete() or adding new task
 
     return (
         <div>
@@ -81,7 +76,7 @@ useEffect(() => {
                 </SearchForm>
             </div>
 
-            <TodosContext.Provider value={{todos, update, setUpdate, addEdit, setAddEdit, searchResults}}>
+            <TodosContext.Provider value={{response, addEdit, setAddEdit, searchResults, causeRerender}}>
             <TodoListContainer>
                 <div style={{display: 'flex', flexDirection: 'column', width: '50%', alignItems: 'center'}}>
                     <ListHeader>

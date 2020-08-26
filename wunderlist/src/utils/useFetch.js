@@ -1,7 +1,7 @@
 import {useState, useEffect} from 'react';
 
 export default function useFetch({ api, method, url, data = null, config = null}) {
-    const [response, setResponse] = useState(null);
+    const [response, setResponse] = useState([]);
     const [error, setError] = useState('');
     const [isLoading, setIsLoading] = useState(true);
     const [update, setUpdate] = useState(true); 
@@ -15,8 +15,8 @@ export default function useFetch({ api, method, url, data = null, config = null}
             try {
                 api[method](url, JSON.parse(config), JSON.parse(data))
                     .then(res => {
-                        setResponse(res);
-                        console.log(res);
+                        setResponse(res.data);
+                        console.log(res.data);
                     })
                     .finally(() => {
                         setIsLoading(false)
@@ -29,5 +29,5 @@ export default function useFetch({ api, method, url, data = null, config = null}
         fetchData();
     }, [api, method, url, data, config, update]);
 
-    return {response, error, isLoading, causeRerender}
+    return {response, error, isLoading, causeRerender, update}
 }
