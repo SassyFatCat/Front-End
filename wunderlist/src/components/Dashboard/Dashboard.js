@@ -5,11 +5,10 @@ import {Header, LogoutButton, DashBar, TodoListContainer, TodoHeader, FormDiv, L
 
 //DUMMY DATA
 import {dummyData} from './dummyData';
-import TodoList from '../TodoList/TodoList'; 
-
 
 // COMPONENTS
 import AddEditForm from '../AddEditForm/AddEditForm'
+import TodoList from '../TodoList/TodoList'; 
 
 const Dashboard = () => {
 const [todos, setTodos] = useState(dummyData);
