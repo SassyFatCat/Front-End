@@ -90,6 +90,9 @@ label {
   text-align: center;
   border: 2px solid white;
 }
+/* .contract{
+  
+} */
 @media (min-width: 1220px) {
   .formContainer {
     display: flex;

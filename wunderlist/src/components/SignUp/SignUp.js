@@ -4,6 +4,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
 import SignUpFormSchema from "./SignUpFormSchema";
+import SigningPaper from "./paper-24.png";
 
 const initialFormValues = {
   username: "",
@@ -90,7 +91,10 @@ const SignUp = () => {
     <div className="container">
       <div className="background"></div>
       <div className="formContainer">
-        <h2 className="title">Sign up!</h2>
+        <h2 className="title">
+          Sign up! &nbsp;
+          <img className="contract" src={SigningPaper} />
+        </h2>
         <form className="signUpForm" onSubmit={submit}>
           <div className="insideFormContainer">
             <label>
