@@ -31,17 +31,30 @@
 
 h1 {
     font-size: 5rem;
+    padding: 2%;
 }
-
+p{
+    font-size: 1.1rem;
+}
 #copyright {
     font-size: 1rem;
     vertical-align: top;
 }
+.linkContainer{
+    padding: 5%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+span{
+    padding: 3%;
+}
 .links{
+    padding:3%;
+    width: 50%;
     text-decoration: none;
-    color: #24FF99;
+    color: #3FB8AF;
 }
 .links:hover{
-    transition: 0.2s;
-    transform: scale(1.2);
+    color: #3fb8b0cb;
 }

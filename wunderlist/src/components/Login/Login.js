@@ -8,6 +8,7 @@ import LoginformSchema from './LoginformSchema'
 import {useSpring, animated, interpolate} from 'react-spring'
 
 
+
 const initialValues = {
   username: "",
   password: "",
@@ -17,97 +18,96 @@ const initialErrors = {
   username: "",
   password: "",
 };
+const initialDisabled = true;
 
 const Login = () => {
   const [userInfo, setUserInfo] = useState([]);
   const [values, setValues] = useState(initialValues);
-const [errors, setErrors ] = useState(initialErrors)
+  const [errors, setErrors] = useState(initialErrors);
+  const [disabled, setDisabled] = useState(initialDisabled);
 
-const thisUrl = 'https://reqres.in/api/users'
+  const thisUrl = "https://reqres.in/api/users";
 
-// const update = (name, value) => {
-//     const updateUser = {[name]: value, ...values}
-//     setValues(updateUser)
-  
-
-
+  // const update = (name, value) => {
+  //     const updateUser = {[name]: value, ...values}
+  //     setValues(updateUser)
 
   // const onChange = (event) => {
   //   const { name, value } = event.target;
   //   update(name, value);
   // };
 
+  const getUser = () => {
+    axios
+      .get(thisUrl)
+      .then((res) => {
+        setUserInfo(res.data);
+      })
+      .catch((error) => {
+        console.log("check axios get");
+      })
 
-const getUser = () => {
-    axios.get(thisUrl)
-    .then(res => {
-        setUserInfo(res.data)
-    })
-    .catch(error => {
-        console.log('check axios get')
-    })
-
-    .finally(() => {
-        setValues(initialValues)
-    })
-}
-
-const postUser = thisUser => {
-   
-    axios.post('https://reqres.in/api/users', thisUser)
-    .then(res => {
-        setUserInfo([...userInfo, res.data])
-        console.log('axios post worked')
-    })
-    .catch(error => {
-      console.log('check axios post')
-    })
-   
-  }
-
-
-
-const submit = () => {
-    const thisUser ={
-    username: values.username.trim(),
-    password: values.password
-}
-
-postUser(thisUser)
-}
-
-const inputValueChange = (event) => {
-
-  const {name,value} = event.target
-  setValues({
-    ...values,
-    [name]: value,
-  });
-
-  yup
-  .reach(LoginformSchema, name)
-  .validate(value)
-  .then(valid => {
-      setErrors({
-        ...errors,
-        [name]: ""
+      .finally(() => {
+        setValues(initialValues);
       });
-  })
-    .catch(error => {
-      setErrors({
-        ...errors,
-        [name]: error.errors[0]
+  };
+
+  const postUser = (thisUser) => {
+    axios
+      .post("https://reqres.in/api/users", thisUser)
+      .then((res) => {
+        setUserInfo([...userInfo, res.data]);
+        console.log("axios post worked");
+      })
+      .catch((error) => {
+        console.log("check axios post");
       });
+  };
+
+  const submit = () => {
+    const thisUser = {
+      username: values.username.trim(),
+      password: values.password,
+    };
+
+    postUser(thisUser);
+  };
+
+  const inputValueChange = (event) => {
+    const { name, value } = event.target;
+    setValues({
+      ...values,
+      [name]: value,
     });
 
-  
-};
+    yup
+      .reach(LoginformSchema, name)
+      .validate(value)
+      .then((valid) => {
+        setErrors({
+          ...errors,
+          [name]: "",
+        });
+      })
+      .catch((error) => {
+        setErrors({
+          ...errors,
+          [name]: error.errors[0],
+        });
+      });
+  };
 
+  useEffect(() => {
+    //THis disables the submit button till it all the vorm validation fields are filled and validated
+    LoginformSchema.isValid(values).then((valid) => {
+      setDisabled(!valid);
+    });
+  }, [values]);
 
+  useEffect(() => {
+    getUser();
+  }, []);
 
-useEffect(() => {
-    getUser()
-  }, [])
 
 
  const {o, xyz, color} = useSpring({
@@ -175,4 +175,5 @@ useEffect(() => {
 
 }
 export default Login
+
 

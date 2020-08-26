@@ -13,8 +13,20 @@ const Home = () => {
           Wunderlist<span id="copyright">©</span>
         </h1>
         <p>Your new favorite to-do list.</p>
-        <Link className="links" to="/login">Login</Link>
-        <Link className="links" to="/signup">Sign Up!</Link>
+        <div className="linkContainer">
+          <span>
+            Have an account?{" "}
+            <Link className="links" to="/login">
+              Login
+            </Link>
+          </span>
+          <span>
+            Dont have an account?{" "}
+            <Link className="links" to="/signup">
+              Sign Up!
+            </Link>
+          </span>
+        </div>
       </div>
     </div>
   );

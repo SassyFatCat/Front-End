@@ -4,13 +4,21 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import * as yup from "yup";
 import SignUpFormSchema from "./SignUpFormSchema";
+import SigningPaper from "./paper-24.png";
+import { useSpring, animated } from "react-spring";
+import {Keyframes} from 'react-spring/renderprops'
+
 
 const initialFormValues = {
+  first_name: "",
+  last_name: "",
   username: "",
   email: "",
   password: "",
 };
 const initialFormErrors = {
+  first_name: "",
+  last_name: "",
   username: "",
   email: "",
   password: "",
@@ -86,50 +94,107 @@ const SignUp = () => {
     });
   }, [values]);
 
+  // This is animation below till the return
+  const fade = useSpring({ opacity: 0, from: { opacity: 1 } });
+
+// Will fade children in and out in a loop
+// const Container = Keyframes.Spring({
+//   // Single props
+//   show: {opacity: 1},
+//   // Chained animations (arrays)
+//   showAndHide: [{opacity: 1}, {opacity: 0}],
+//   // Functions with side-effects with access to component props
+//   wiggle: async (next, cancel, ownProps) => {
+//     await next({x: 100, config: config.wobbly})
+//     await delay(1000)
+//     await next({x: 0, config: config.gentle})
+//   }
+// })
+
   return (
-
-    <div id="container">
-      <h2>Don't have an account? Sign up!</h2>
-      <Link to="/">Home</Link>
-      <form onSubmit={submit}>
-        <label>
-          Username:
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            value={values.username}
-            onChange={inputValueChange}
-          />
-        </label>
-        <label>
-          Email:
-          <input
-            type="email"
-            name="email"
-            placeholder="example@example.com"
-            value={values.email}
-            onChange={inputValueChange}
-          />
-        </label>
-        <label>
-          Password:
-          <input
-            type="password"
-            name="password"
-            value={values.password}
-            onChange={inputValueChange}
-          />
-        </label>
-        <button>Submit</button>
-      </form>
-
-      {/* REMOVE THE CODE BELOW LATER */}
-      <div>
-        REMOVE THIS LATER
-        <h1>{user.username}</h1>
-        <h1>{user.email}</h1>
-        <h1>{user.password}</h1>
+    <div className="container">
+      <div className="background"></div>
+      <div className="formContainer">
+        <h2 className="title">
+          <animated.img className="contract" style={fade} src={SigningPaper}></animated.img>
+          &nbsp;Sign up!&nbsp;
+          <animated.img className="contract" style={fade} src={SigningPaper} />
+        </h2>
+        <form className="signUpForm" onSubmit={submit}>
+          <div className="insideFormContainer">
+            <label>
+              First Name:
+              <input
+                type="text"
+                name="first_name"
+                value={values.first_name}
+                onChange={inputValueChange}
+              />
+              <div className="error">
+                <span>{formErrors.first_name}</span>
+              </div>
+            </label>
+            <label>
+              Last Name:
+              <input
+                type="text"
+                name="last_name"
+                value={values.last_name}
+                onChange={inputValueChange}
+              />
+              <div className="error">
+                <span>{formErrors.last_name}</span>
+              </div>
+            </label>
+            <label>
+              Username:
+              <input
+                type="text"
+                name="username"
+                value={values.username}
+                onChange={inputValueChange}
+              />
+              <div className="error">
+                <span>{formErrors.username}</span>
+              </div>
+            </label>
+            <label>
+              Email:
+              <input
+                type="email"
+                name="email"
+                value={values.email}
+                onChange={inputValueChange}
+              />
+              <div className="error">
+                <span>{formErrors.email}</span>
+              </div>
+            </label>
+            <label>
+              Password:
+              <input
+                type="password"
+                name="password"
+                value={values.password}
+                onChange={inputValueChange}
+              />
+              <div className="error">
+                <span>{formErrors.password}</span>
+              </div>
+            </label>
+            <div>
+              <button className="submitButton" disabled={disabled}>
+                Submit
+              </button>
+            </div>
+            <Link className="homeLink" to="/">
+              Home
+            </Link>
+            {/* <div>
+              <h1>{user.username}</h1>
+            </div> */}
+          </div>
+        </form>
       </div>
     </div>
   );

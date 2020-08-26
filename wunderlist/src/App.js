@@ -8,18 +8,20 @@ import { Route, Switch } from "react-router-dom";
 import Home from "./components/Home/Home";
 import Dashboard from "./components/Dashboard/Dashboard";
 import Login from "./components/Login/Login";
-
 import signUp from "./components/SignUp/SignUp";
+import PrivateRoute from './utils/PrivateRoute'
 
 function App() {
+
   return (
     <div>
       <Switch>
+        
         <Route exact path="/" component={Home} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={signUp} />
-        <Route path="/dashboard" component={Dashboard} />{" "}
-        {/*Eventually will be PrivateRoute*/}
+        <PrivateRoute path="/dashboard" component={Dashboard} />
+        
       </Switch>
     </div>
   );
