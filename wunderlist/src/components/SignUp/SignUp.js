@@ -6,6 +6,7 @@ import * as yup from "yup";
 import SignUpFormSchema from "./SignUpFormSchema";
 import SigningPaper from "./paper-24.png";
 import { useSpring, animated } from "react-spring";
+import {Keyframes} from 'react-spring/renderprops'
 
 const initialFormValues = {
   first_name: "",
@@ -15,6 +16,8 @@ const initialFormValues = {
   password: "",
 };
 const initialFormErrors = {
+  first_name: "",
+  last_name: "",
   username: "",
   email: "",
   password: "",
@@ -92,12 +95,28 @@ const SignUp = () => {
 
   // This is animation below till the return
   const fade = useSpring({ opacity: 0, from: { opacity: 1 } });
+
+// Will fade children in and out in a loop
+// const Container = Keyframes.Spring({
+//   // Single props
+//   show: {opacity: 1},
+//   // Chained animations (arrays)
+//   showAndHide: [{opacity: 1}, {opacity: 0}],
+//   // Functions with side-effects with access to component props
+//   wiggle: async (next, cancel, ownProps) => {
+//     await next({x: 100, config: config.wobbly})
+//     await delay(1000)
+//     await next({x: 0, config: config.gentle})
+//   }
+// })
+
   return (
     <div className="container">
       <div className="background"></div>
       <div className="formContainer">
         <h2 className="title">
-          Sign up! &nbsp;
+          <animated.img className="contract" style={fade} src={SigningPaper}></animated.img>
+          &nbsp;Sign up!&nbsp;
           <animated.img className="contract" style={fade} src={SigningPaper} />
         </h2>
         <form className="signUpForm" onSubmit={submit}>
