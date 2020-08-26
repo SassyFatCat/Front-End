@@ -1,58 +1,57 @@
-
-
 #background {
-    height: 100vh;
-    width: 100vw;
-    background-image: url('alberta-2297204_1920.jpg');
-    filter: blur(3px);
-    -webkit-filter: blur(3px);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
+  height: 100vh;
+  width: 100vw;
+  background-image: url("alberta-2297204_1920.jpg");
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #title {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.4);
-    color: white;
-    top: 30%;
-    right: 32%;
-    z-index: 2;
-    width: 40%;
-    height: 40%;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  background-color: rgba(22, 66, 91, 0.95);
+  color: white;
+  top: 30%;
+  right: 32%;
+  z-index: 2;
+  width: 40%;
+  height: 40%;
+  text-align: center;
+  border: 9.5px solid rgb(123, 185, 217);
 }
 
 h1 {
-    font-size: 5rem;
-    padding: 2%;
+  font-size: 5rem;
+  padding: 2%;
 }
-p{
-    font-size: 1.1rem;
+p {
+  font-size: 1.1rem;
 }
 #copyright {
-    font-size: 1rem;
-    vertical-align: top;
+  font-size: 1rem;
+  vertical-align: top;
 }
-.linkContainer{
-    padding: 5%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+.linkContainer {
+  padding: 5%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
-span{
-    padding: 3%;
+span {
+  padding: 3%;
 }
-.links{
-    padding:3%;
-    width: 50%;
-    text-decoration: none;
-    color: #3FB8AF;
+.links {
+  padding: 3%;
+  width: 50%;
+  text-decoration: none;
+  color: #3fb8af;
 }
-.links:hover{
-    color: #3fb8b0cb;
+.links:hover {
+  color: #3fb8b0cb;
 }

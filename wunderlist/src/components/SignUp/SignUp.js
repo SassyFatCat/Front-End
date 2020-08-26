@@ -121,7 +121,7 @@ const SignUp = () => {
             ),
             border: interpolate([o, color], (o, c) => `${o * 10}px solid ${c}`),
             padding: o
-              .interpolate({ range: [0, 0.9, 1], output: [0, 0, 10] })
+              .interpolate({ range: [4, 0.2, 5], output: [0, 0, 10] })
               .interpolate((o) => `${o}%`),
             borderColor: o.interpolate({
               range: [0, 1],
