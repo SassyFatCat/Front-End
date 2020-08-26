@@ -83,11 +83,13 @@ h2 {
   align-items: center;
   justify-content: center;
   margin-bottom: 3%;
+  padding-top: 5%;
 }
 
 .error {
   font-size: 10px;
   padding: 0;
+
 }
 
 /* label {
