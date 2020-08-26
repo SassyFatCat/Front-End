@@ -1,12 +1,12 @@
 
 import React, {useState, useEffect} from 'react';
-import {Link } from 'react-router-dom';
+import {Link, useHistory } from 'react-router-dom';
 import axios from 'axios';
 import * as yup from 'yup';
-import './Login.css'
-import LoginformSchema from './LoginformSchema'
-import {useSpring, animated, interpolate} from 'react-spring'
-
+import './Login.css';
+import LoginformSchema from './LoginformSchema';
+import {useSpring, animated, interpolate} from 'react-spring';
+import {axiosWithAuth} from '../../utils/axiosWithAuth'
 
 
 const initialValues = {
@@ -25,6 +25,7 @@ const Login = () => {
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState(initialErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
+const history = useHistory()
 
   const thisUrl = "https://reqres.in/api/users";
 
@@ -38,7 +39,7 @@ const Login = () => {
   // };
 
   const getUser = () => {
-    axios
+    axiosWithAuth
       .get(thisUrl)
       .then((res) => {
         setUserInfo(res.data);
@@ -53,10 +54,11 @@ const Login = () => {
   };
 
   const postUser = (thisUser) => {
-    axios
-      .post("https://reqres.in/api/users", thisUser)
+    axiosWithAuth
+      .post("/user/login", thisUser)
       .then((res) => {
-        setUserInfo([...userInfo, res.data]);
+        localStorage.setItem('token', res.data)
+        history.push('/dashboard')
         console.log("axios post worked");
       })
       .catch((error) => {
