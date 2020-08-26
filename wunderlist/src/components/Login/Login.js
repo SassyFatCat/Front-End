@@ -6,7 +6,7 @@ import * as yup from 'yup';
 import './Login.css';
 import LoginformSchema from './LoginformSchema';
 import {useSpring, animated, interpolate} from 'react-spring';
-import {axiosWithAuth} from '../../utils/axiosWithAuth'
+import {loginWithAuth} from '../../utils/axiosWithAuth'
 
 
 const initialValues = {
@@ -39,7 +39,7 @@ const history = useHistory()
   // };
 
   const getUser = () => {
-    axiosWithAuth
+    loginWithAuth
       .get(thisUrl)
       .then((res) => {
         setUserInfo(res.data);
@@ -54,7 +54,7 @@ const history = useHistory()
   };
 
   const postUser = (thisUser) => {
-    axiosWithAuth
+    loginWithAuth
       .post("/user/login", thisUser)
       .then((res) => {
         localStorage.setItem('token', res.data)

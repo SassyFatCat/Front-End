@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { TodosContext } from "../../context/TodosContext";
 import { dummyData } from "../Dashboard/dummyData";
-import {StyledHeader} from "./FormStyles"; 
+import {StyledHeader} from "./FormStyles";
+import {axiosWithAuth} from '../../utils/axiosWithAuth';
 
 const initialForm = {
   name: "",
@@ -41,37 +42,42 @@ setFormData({
 
 const submit = event => {
 event.preventDefault();
-let newTodo = {...formData, tags: formData.tags};
+let newTodo = {...formData};
 newTodo.tags = Object.keys(formData.tags).filter(tag => formData.tags[tag] === true)
 
 if (todosContext.addEdit.is === 'add') {
-    //.post()
-    todosContext.setUpdate(!todosContext.update)
+    axiosWithAuth.post('/todos', newTodo)
+      .then(res => todosContext.causeRerender())
+      .catch(err => console.log(err))
+    
 }
 else {
-    //.put()
-    todosContext.setUpdate(!todosContext.update)
+    axiosWithAuth  
+      .put(`/todos/${todosContext.addEdit.id}`, newTodo)
+      .then(res => todosContext.causeRerender())
+      .catch(err => console.log(err))
 }
 // newTodo is ready for .put() or .post()
 }
 
 useEffect(() => {
 if (todosContext.addEdit.is === 'edit') {
-    // make a axiosWithAuth().get, getting the todo task with the id in todosContext.addEdit.id
+    axiosWithAuth
+      .get(`/todos/${todosContext.addEdit.id}`)
+        .then(res => {
+          const todoItem = res.data;
+          let checkboxTags = {
+            school: false,
+            exercise: false,
+            work: false
+        };
+    
+        todoItem.tags.forEach(tag => checkboxTags[tag] = true);{/* comment */}
+        todoItem.tags = checkboxTags;{/* comment */}
+        setFormData(todoItem);{/* comment */}
+        })
+        .catch(err => console.log(err))
     // Populate the form with the success data
-
-    const todoItem = {...dummyData.find(item => item.id === todosContext.addEdit.id)};{/* comment */}
-    let checkboxTags = {
-        school: false,
-        exercise: false,
-        work: false
-    };
-
-    todoItem.tags.forEach(tag => checkboxTags[tag] = true);{/* comment */}
-    todoItem.tags = checkboxTags;{/* comment */}
-    setFormData(todoItem);{/* comment */}
-    // console.log(todosContext.todos)
-
 }
 }, [todosContext.addEdit.id])
     return (

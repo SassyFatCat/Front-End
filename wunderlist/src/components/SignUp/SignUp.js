@@ -7,7 +7,7 @@ import SignUpFormSchema from "./SignUpFormSchema";
 import SigningPaper from "./paper-24.png";
 import { useSpring, animated } from "react-spring";
 import { Keyframes } from "react-spring/renderprops";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import { loginWithAuth } from "../../utils/axiosWithAuth";
 
 const initialFormValues = {
   first_name: "",
@@ -47,12 +47,12 @@ const SignUp = () => {
 
   const postNewUser = (newUser) => {
     //This posts data to the api which then should be used to login.
-    axiosWithAuth
-      .post("/user/register", newUser)
+    loginWithAuth
+      .post("/register", newUser)
       .then((res) => {
-        localStorage.setItem("token",res.data);
+        localStorage.setItem("token", res.data.access_token);
         history.push("/dashboard")//this sends the user to the dashboard once they sign up
-        console.log(res.data);
+        console.log(res.data.access_token);
       })
       .catch((err) => {
         alert("Sign Up Failed!")

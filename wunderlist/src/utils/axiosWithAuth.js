@@ -1,19 +1,12 @@
 import axios from 'axios'; 
 
-// export function axiosWithAuth() {
-//     const token = localStorage.getItem("token"); 
-
-//     return axios.create({
-//         baseURL: "https://reqres.in", 
-//         // headers: {
-//         //     Authorization: `${token}`
-//         // }
-//    });
-// }; 
-
-export const axiosWithAuth = axios.create({
-    baseURL: " http://wonderlist-backend.herokuapp.com", 
+export const loginWithAuth = axios.create({
+    baseURL: "http://wonderlist-backend.herokuapp.com", 
     headers: {
         Authorization: localStorage.getItem('token')
     }
 }); 
+
+export const axiosWithAuth = axios.create({
+    baseURL: 'https://5f46d272aaaf9a0016151242.mockapi.io/api/'
+})
