@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./SignUp.css";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import SignUpFormSchema from "./SignUpFormSchema";
 import SigningPaper from "./paper-24.png";
 import { useSpring, animated } from "react-spring";
-import {Keyframes} from 'react-spring/renderprops'
-
+import { Keyframes } from "react-spring/renderprops";
+import { axiosWithAuth } from "../../utils/axiosWithAuth";
 
 const initialFormValues = {
   first_name: "",
@@ -26,6 +26,7 @@ const initialFormErrors = {
 const initialDisabled = true;
 
 const SignUp = () => {
+  const history = useHistory()
   const [user, setUser] = useState([]);
   const [values, setValues] = useState(initialFormValues);
   const [formErrors, setFormErrors] = useState(initialFormErrors); // object
@@ -35,6 +36,8 @@ const SignUp = () => {
     //This takes the data when it is submited.
     event.preventDefault();
     const newUser = {
+      firstname: values.first_name.trim(),
+      lastname: values.last_name.trim(),
       username: values.username.trim(),
       email: values.email.trim(),
       password: values.password.trim(),
@@ -44,13 +47,15 @@ const SignUp = () => {
 
   const postNewUser = (newUser) => {
     //This posts data to the api which then should be used to login.
-    axios
-      .post("https://reqres.in/api/users", newUser)
+    axiosWithAuth
+      .post("/user/register", newUser)
       .then((res) => {
-        setUser(res.data);
+        localStorage.setItem("token",res.data);
+        history.push("/dashboard")//this sends the user to the dashboard once they sign up
         console.log(res.data);
       })
       .catch((err) => {
+        alert("Sign Up Failed!")
         console.log(err);
       })
       .finally(() => {
@@ -97,26 +102,30 @@ const SignUp = () => {
   // This is animation below till the return
   const fade = useSpring({ opacity: 0, from: { opacity: 1 } });
 
-// Will fade children in and out in a loop
-// const Container = Keyframes.Spring({
-//   // Single props
-//   show: {opacity: 1},
-//   // Chained animations (arrays)
-//   showAndHide: [{opacity: 1}, {opacity: 0}],
-//   // Functions with side-effects with access to component props
-//   wiggle: async (next, cancel, ownProps) => {
-//     await next({x: 100, config: config.wobbly})
-//     await delay(1000)
-//     await next({x: 0, config: config.gentle})
-//   }
-// })
+  // Will fade children in and out in a loop
+  // const Container = Keyframes.Spring({
+  //   // Single props
+  //   show: {opacity: 1},
+  //   // Chained animations (arrays)
+  //   showAndHide: [{opacity: 1}, {opacity: 0}],
+  //   // Functions with side-effects with access to component props
+  //   wiggle: async (next, cancel, ownProps) => {
+  //     await next({x: 100, config: config.wobbly})
+  //     await delay(1000)
+  //     await next({x: 0, config: config.gentle})
+  //   }
+  // })
 
   return (
     <div className="container">
       <div className="background"></div>
       <div className="formContainer">
         <h2 className="title">
-          <animated.img className="contract" style={fade} src={SigningPaper}></animated.img>
+          <animated.img
+            className="contract"
+            style={fade}
+            src={SigningPaper}
+          ></animated.img>
           &nbsp;Sign up!&nbsp;
           <animated.img className="contract" style={fade} src={SigningPaper} />
         </h2>
