@@ -51,9 +51,13 @@ label {
 /* ERRORS CSS  */
 .error {
   color: rgb(190, 42, 42);
-  height:12px;
+  height:20px;
   font-size: 1rem;
-  padding-bottom: 6%;
+  padding-bottom: 0%;
+}
+.error span{
+  width: 100%;
+  padding: 0;
 }
 .title {
   padding: 0;
@@ -85,8 +89,8 @@ label {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  width: 40%;
-  height: 50%;
+  width: 50%;
+  height: 80%;
   text-align: center;
   border: 2px solid white;
 }

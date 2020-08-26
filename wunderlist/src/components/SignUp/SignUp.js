@@ -8,6 +8,8 @@ import SigningPaper from "./paper-24.png";
 import { useSpring, animated } from "react-spring";
 
 const initialFormValues = {
+  first_name: "",
+  last_name: "",
   username: "",
   email: "",
   password: "",
@@ -89,7 +91,7 @@ const SignUp = () => {
   }, [values]);
 
   // This is animation below till the return
-const fade = useSpring({opacity: 0, from: {opacity: 1}})
+  const fade = useSpring({ opacity: 0, from: { opacity: 1 } });
   return (
     <div className="container">
       <div className="background"></div>
@@ -101,7 +103,30 @@ const fade = useSpring({opacity: 0, from: {opacity: 1}})
         <form className="signUpForm" onSubmit={submit}>
           <div className="insideFormContainer">
             <label>
-              <div className="error">{formErrors.username}</div>
+              First Name:
+              <input
+                type="text"
+                name="first_name"
+                value={values.first_name}
+                onChange={inputValueChange}
+              />
+              <div className="error">
+                <span>{formErrors.first_name}</span>
+              </div>
+            </label>
+            <label>
+              Last Name:
+              <input
+                type="text"
+                name="last_name"
+                value={values.last_name}
+                onChange={inputValueChange}
+              />
+              <div className="error">
+                <span>{formErrors.last_name}</span>
+              </div>
+            </label>
+            <label>
               Username:
               <input
                 type="text"
@@ -109,9 +134,11 @@ const fade = useSpring({opacity: 0, from: {opacity: 1}})
                 value={values.username}
                 onChange={inputValueChange}
               />
+              <div className="error">
+                <span>{formErrors.username}</span>
+              </div>
             </label>
             <label>
-              <div className="error">{formErrors.email}</div>
               Email:
               <input
                 type="email"
@@ -119,9 +146,11 @@ const fade = useSpring({opacity: 0, from: {opacity: 1}})
                 value={values.email}
                 onChange={inputValueChange}
               />
+              <div className="error">
+                <span>{formErrors.email}</span>
+              </div>
             </label>
             <label>
-              <div className="error">{formErrors.password}</div>
               Password:
               <input
                 type="password"
@@ -129,6 +158,9 @@ const fade = useSpring({opacity: 0, from: {opacity: 1}})
                 value={values.password}
                 onChange={inputValueChange}
               />
+              <div className="error">
+                <span>{formErrors.password}</span>
+              </div>
             </label>
             <div>
               <button className="submitButton" disabled={disabled}>
