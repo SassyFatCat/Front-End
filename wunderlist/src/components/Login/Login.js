@@ -1,10 +1,12 @@
 
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useMeasure} from 'react';
 import {Link } from 'react-router-dom';
 import axios from 'axios';
 import * as yup from 'yup';
 import './Login.css'
 import LoginformSchema from './LoginformSchema'
+import {useSpring, animated, interpolate} from 'react-spring'
+
 
 const initialValues = {
   username: "",
@@ -107,12 +109,35 @@ useEffect(() => {
     getUser()
   }, [])
 
+
+ const {o, xyz, color} = useSpring({
+   from: {o: 0, xyz: [0,0,0], color: '#16425B'},
+   o: .95,
+   xyz: [10, 20, 5],
+   color: 'white'
+ })
+
+
     return(
         <>
         <div className = 'login'></div>
         <form className='loginContainer' onSubmit={submit}>
-        <h2>Login Here</h2>
-        <div className='loginInfo'>
+       <animated.div
+         style={{
+          color,
+          background: o.interpolate(o => `rgba(22,66,91, ${o})`),
+          transform: xyz.interpolate((x, y, z) => `translate3d(${x}px, ${y}px, ${z}px)`),
+          border: interpolate([o, color], (o, c) => `${o * 10}px solid ${c}`),
+          padding: o.interpolate({range: [0, 0.5, 1], output: [0, 0, 10]}).interpolate(o => `${o}%`),
+          borderColor: o.interpolate({range: [0, 1], output: ['blue', '#81C3D7']}),
+          opacity: o.interpolate([0.1, 0.2, 0.6, 1], [1, 0.1, 0.5, 1])
+        }}
+      >
+         <div className='loginInfo' {...o.interpolate(n => n.toFixed(2))}>
+        
+        <h2 >Login Here</h2>
+        
+       
             <label>Username: 
                 <input
                  value={values.username}
@@ -142,8 +167,9 @@ useEffect(() => {
         </div>
 
         <Link to='/' className='homeLink'>Home</Link>
+       
+        </animated.div>
         </form>
-        
         </>
     )
 
