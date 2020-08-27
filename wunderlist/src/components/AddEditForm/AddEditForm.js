@@ -63,14 +63,16 @@ newTodo.tags = Object.keys(formData.tags).filter(tag => formData.tags[tag] === t
 if (todosContext.addEdit.is === 'add') {
     axiosWithAuth.post('/todos', newTodo)
       .then(res => todosContext.causeRerender())
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
+      setFormData(initialForm)
     
 }
 else {
     axiosWithAuth  
       .put(`/todos/${todosContext.addEdit.id}`, newTodo)
       .then(res => todosContext.causeRerender())
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
+      setFormData(initialForm)
 }
 }
 
@@ -135,7 +137,7 @@ if (todosContext.addEdit.is === 'edit') {
                     onChange={onCheckboxChange}
                 /></label> 
                 <label>Due date: </label>
-                <select onChange={dateChange} name='month'>
+                <select value={formData.dueDate.month} onChange={dateChange} name='month'>
                   <option value="">Month</option>
                   <option value="January">January</option>
                   <option value="February">February</option>
@@ -152,7 +154,7 @@ if (todosContext.addEdit.is === 'edit') {
                 </select>
 
 
-                <select onChange={dateChange} name='day'>
+                <select  value={formData.dueDate.day} onChange={dateChange} name='day'>
                   <option value="">Day</option>
                   <option value='1'>1</option>
                   <option value='2'>2</option>
