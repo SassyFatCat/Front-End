@@ -6,7 +6,7 @@ import * as yup from "yup";
 import SignUpFormSchema from "./SignUpFormSchema";
 import SigningPaper from "./paper-24.png";
 
-import { useSpring, animated } from "react-spring";
+import { useSpring, animated, interpolate } from "react-spring";
 import { Keyframes } from "react-spring/renderprops";
 import { loginWithAuth } from "../../utils/axiosWithAuth";
 
