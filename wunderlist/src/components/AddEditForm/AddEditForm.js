@@ -40,10 +40,24 @@ setFormData({
 })
 }
 
+// define a separate onChange for checkboxes, setting a new local state (isChecked), takes in tag name and isChecked boolean
+// const onCheckboxChange = (name, isChecked) => {
+//  setFormData({
+//   ...formData, 
+//   tags: {
+//     ...formData.tags, 
+//     [name]: isChecked, 
+//   }
+// })
+//}
+// then below in the onSubmit we shouldn't need to specify the strict equals for true, as isChecked will only return truthy?
+
+
 const submit = event => {
 event.preventDefault();
 let newTodo = {...formData};
 newTodo.tags = Object.keys(formData.tags).filter(tag => formData.tags[tag] === true)
+
 
 if (todosContext.addEdit.is === 'add') {
     axiosWithAuth.post('/todos', newTodo)
