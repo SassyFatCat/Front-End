@@ -83,6 +83,12 @@ useEffect(() => {
                             event.preventDefault();
                             setSearchResults(response);
                         }}>All</button>
+                        <button onClick={event => {
+                            event.preventDefault();
+                            let date = new Date();
+                            const dayRegex = /(?<=\d{4}.\d{2}.)\d{2}(?=\w)/
+                            setSearchResults(response.filter(todo => todo.dueDate.month === months[date.getMonth()] && todo.dueDate.day === JSON.stringify(date).match(dayRegex)[0]))
+                        }}>Today's tasks</button>
                         {!addEdit.is && <LogoutButton onClick={addTodo}>Add Todo</LogoutButton>}
                     </ListHeader>
                     <TodoList />
