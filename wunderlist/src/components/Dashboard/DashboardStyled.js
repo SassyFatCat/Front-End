@@ -52,7 +52,6 @@ const SearchForm = styled.form`
     width: 30%;
     margin: auto; 
     display: flex;
-    border: 1px solid red;
     padding: 2% 2% 1% 2%;
     &:first-child{
         font-size: 1.2rem;
