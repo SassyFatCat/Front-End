@@ -21,45 +21,21 @@ const initialErrors = {
 const initialDisabled = true;
 
 const Login = () => {
-  const [userInfo, setUserInfo] = useState([]);
   const [values, setValues] = useState(initialValues);
   const [errors, setErrors] = useState(initialErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
 const history = useHistory()
 
-  const thisUrl = "https://reqres.in/api/users";
-
-  // const update = (name, value) => {
-  //     const updateUser = {[name]: value, ...values}
-  //     setValues(updateUser)
-
-  // const onChange = (event) => {
-  //   const { name, value } = event.target;
-  //   update(name, value);
-  // };
-
-  const getUser = () => {
-    loginWithAuth
-      .get(thisUrl)
-      .then((res) => {
-        setUserInfo(res.data);
-      })
-      .catch((error) => {
-        console.log("check axios get");
-      })
-
-      .finally(() => {
-        setValues(initialValues);
-      });
-  };
-
   const postUser = (thisUser) => {
-    loginWithAuth
-      .post("/user/login", thisUser)
+    axios
+      .post("https://reqres.in/api/login", {
+        "email": "eve.holt@reqres.in",
+        "password": "cityslicka"
+    })
       .then((res) => {
-        localStorage.setItem('token', res.data)
+        console.log(res)
+        localStorage.setItem('token', res.data.token)
         history.push('/dashboard')
-        console.log("axios post worked");
       })
       .catch((error) => {
         console.log("check axios post");
@@ -105,12 +81,6 @@ const history = useHistory()
       setDisabled(!valid);
     });
   }, [values]);
-
-  useEffect(() => {
-    getUser();
-  }, []);
-
-
 
  const {o, xyz, color} = useSpring({
    from: {o: 0, xyz: [0,0,0], color: '#16425B'},
@@ -159,7 +129,10 @@ const history = useHistory()
                 />
             </label>
 
-            <button className='loginButton'>submit</button>
+            <button onClick={event => {
+              event.preventDefault();
+              submit();
+            }} className='loginButton'>submit</button>
         </div>
 
         <div className='myErrors'>

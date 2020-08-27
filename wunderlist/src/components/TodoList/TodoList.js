@@ -39,6 +39,7 @@ const handleCompleted = item => {
                 return (
                     <TodoDiv>
                         {item.completed ? <CompletedTodoTitle>{item.name}</CompletedTodoTitle> : <TodoTitle>{item.name}</TodoTitle>}
+                        <p>{`Due date: ${item.dueDate.month} ${item.dueDate.day}`}</p>
                         <Button onClick={event => { 
                             event.preventDefault();
                             handleDelete(item.id)}}>Delete</Button>

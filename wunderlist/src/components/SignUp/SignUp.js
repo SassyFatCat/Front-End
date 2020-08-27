@@ -4,11 +4,10 @@ import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
 import * as yup from "yup";
 import SignUpFormSchema from "./SignUpFormSchema";
-import SigningPaper from "./paper-24.png";
+
 
 import { useSpring, animated, interpolate } from "react-spring";
-import { Keyframes } from "react-spring/renderprops";
-import { loginWithAuth } from "../../utils/axiosWithAuth";
+
 
 
 const initialFormValues = {
@@ -31,16 +30,13 @@ const SignUp = () => {
   const history = useHistory();
   const [user, setUser] = useState([]);
   const [values, setValues] = useState(initialFormValues);
-  const [formErrors, setFormErrors] = useState(initialFormErrors); // object
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
   const [disabled, setDisabled] = useState(initialDisabled);
 
   const submit = (event) => {
     //This takes the data when it is submited.
     event.preventDefault();
     const newUser = {
-      firstname: values.first_name.trim(),
-      lastname: values.last_name.trim(),
-      username: values.username.trim(),
       email: values.email.trim(),
       password: values.password.trim(),
     };
@@ -49,13 +45,16 @@ const SignUp = () => {
 
   const postNewUser = (newUser) => {
     //This posts data to the api which then should be used to login.
-    loginWithAuth
-      .post("/register", newUser)
+    axios
+      .post("https://reqres.in/api/register", {
+        "email": "eve.holt@reqres.in",
+        "password": "pistol"
+    })
       .then((res) => {
-
-        localStorage.setItem("token", res.data.access_token);
+        console.log(res)
+        localStorage.setItem("token", res.data.token);
         history.push("/dashboard")//this sends the user to the dashboard once they sign up
-        console.log(res.data.access_token);
+        console.log(res.data.token);
 
       })
       .catch((err) => {

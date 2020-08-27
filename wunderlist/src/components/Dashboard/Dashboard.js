@@ -12,6 +12,7 @@ import {axiosWithAuth} from '../../utils/axiosWithAuth'
 
 const Dashboard = () => {
 const history = useHistory();
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const {response, error, isLoading, causeRerender, update} = useFetch({
     api: axiosWithAuth,
     method: 'get',
@@ -19,17 +20,11 @@ const {response, error, isLoading, causeRerender, update} = useFetch({
 });
 const [searchResults, setSearchResults] = useState(response);
 const [searchTerm, setSearchTerm] = useState('');
-// const [update, setUpdate] = useState(true);
 const [addEdit, setAddEdit] = useState({
     is: false, 
     id: 0
 }); 
 
-// const getTodos = () => {
-//     // perform an axiosWithAuth().get to get the todos\
-
-//     return null
-// };
 
 const logOut = event => {
     event.preventDefault();
@@ -80,7 +75,20 @@ useEffect(() => {
             <TodoListContainer>
                 <div style={{display: 'flex', flexDirection: 'column', width: '50%', alignItems: 'center'}}>
                     <ListHeader>
-                        <TodoHeader>My To-do List</TodoHeader>
+                        <TodoHeader>My To-do List</TodoHeader><button onClick={event => {
+                            event.preventDefault();
+                            let date = new Date();
+                            setSearchResults(response.filter(todo => todo.dueDate.month === months[date.getMonth()]))
+                        }}>This Month</button><button onClick={event => {
+                            event.preventDefault();
+                            setSearchResults(response);
+                        }}>All</button>
+                        <button onClick={event => {
+                            event.preventDefault();
+                            let date = new Date();
+                            const dayRegex = /(?<=\d{4}.\d{2}.)\d{2}(?=\w)/
+                            setSearchResults(response.filter(todo => todo.dueDate.month === months[date.getMonth()] && todo.dueDate.day === JSON.stringify(date).match(dayRegex)[0]))
+                        }}>Today's tasks</button>
                         {!addEdit.is && <LogoutButton onClick={addTodo}>Add Todo</LogoutButton>}
                     </ListHeader>
                     <TodoList />
