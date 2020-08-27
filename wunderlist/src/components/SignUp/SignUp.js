@@ -38,9 +38,9 @@ const SignUp = () => {
     //This takes the data when it is submited.
     event.preventDefault();
     const newUser = {
-      firstname: values.first_name.trim(),
-      lastname: values.last_name.trim(),
-      username: values.username.trim(),
+      // firstname: values.first_name.trim(),
+      // lastname: values.last_name.trim(),
+      // username: values.username.trim(),
       email: values.email.trim(),
       password: values.password.trim(),
     };
@@ -49,13 +49,16 @@ const SignUp = () => {
 
   const postNewUser = (newUser) => {
     //This posts data to the api which then should be used to login.
-    loginWithAuth
-      .post("/register", newUser)
+    axios
+      .post("https://reqres.in/api/register", {
+        "email": "eve.holt@reqres.in",
+        "password": "pistol"
+    })
       .then((res) => {
-
-        localStorage.setItem("token", res.data.access_token);
+        console.log(res)
+        localStorage.setItem("token", res.data.token);
         history.push("/dashboard")//this sends the user to the dashboard once they sign up
-        console.log(res.data.access_token);
+        console.log(res.data.token);
 
       })
       .catch((err) => {
